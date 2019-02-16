@@ -66,20 +66,17 @@
             ],
             ["Beer", "Eggs"]
         ];
-      
-        
+
         var minSup = 50;
         //console.log(itemSet);
         itemSetArray1D = changeArrayTo1D(itemSet)
         var Objmode = findMode(itemSetArray1D)
         console.log(itemSetArray1D)
-        console.log(Objmode)
-        var valueSup= findValueSupport(Objmode,  itemSet.length,  minSup)
-        var StatusOfItemSet = filterWithMinSup(valueSup,minSup)
-        console.log( filterWithMinSup(valueSup,minSup))
-        
-       
-
+        console.log("mode",Objmode)
+        var valueSup = findValueSupport(Objmode, itemSet.length, minSup)
+        var StatusOfItemSet = filterWithMinSup(valueSup, minSup)
+        console.log("Support",valueSup);
+        console.log('filter', filterWithMinSup(valueSup, minSup))
     };
 
     function findMode(store) {
@@ -110,19 +107,32 @@
         return newArr;
     }
 
-    function findValueSupport(Objmode, totalOfTransection,minSup) {
+    function findValueSupport(Objmode, totalOfTransection, minSup) {
         var result = {}
-        Object.keys(Objmode).forEach(key => result[key] = (Objmode[key] / totalOfTransection) * 100)
+        Object
+            .keys(Objmode)
+            .forEach(key => result[key] = (Objmode[key] / totalOfTransection) * 100)
         return result
     }
-    
-    function  filterWithMinSup(Objmode,minSup)  {
+
+    function filterWithMinSup(Objmode, minSup) {
         var result = {}
-        Object.keys(Objmode).filter(key => result[key] =Objmode[key] >= minSup)
-        return result;
+        Object
+            .keys(Objmode)
+            .filter(key => result[key] = Objmode[key] >= minSup)
+        return removeLowSup(result);
     }
 
-
+    function removeLowSup(StatusOfItemSet) {
+         Object
+            .keys(StatusOfItemSet)
+            .forEach(function (key) {
+                if (StatusOfItemSet[key] === false){
+                    delete StatusOfItemSet[key]
+                }
+            })
+        return  StatusOfItemSet;
+    }
 </script>
 
 </html>
