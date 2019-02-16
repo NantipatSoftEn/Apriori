@@ -66,20 +66,21 @@
             ],
             ["Beer", "Eggs"]
         ];
+        var minSup = 50;
         //console.log(itemSet);
-        var mode = findMode(itemSet[0]);
-        console.log(mode);
-        //console.log(Convert());
-        Convert(itemSet);
+        itemSetArray1D = changeArrayTo1D(itemSet);
+        var Objmode = findMode(itemSetArray1D);
+        console.log(itemSetArray1D);
+        console.log(Objmode);
+        //  console.log(Object.keys(Objmode).length);
+        findValueSupport(Objmode, minSup);
 
     };
 
     function findMode(store) {
-
         distribution = {},
             max = 0,
             result = [];
-
         store.forEach(function (a) {
             distribution[a] = (distribution[a] || 0) + 1;
             if (distribution[a] > max) {
@@ -91,20 +92,28 @@
                 result.push(a);
             }
         });
-        // console.log('max: ' + max); console.log('key/s with max count: ' +
-        // JSON.stringify(result)); console.log(distribution);
         return distribution;
     }
 
-    function Convert(arrToConvert) {
-       
+    function changeArrayTo1D(array2D) {
         var newArr = [];
-
-        for (var i = 0; i < arrToConvert.length; i++) {
-            newArr = newArr.concat(arrToConvert[i]);
+        for (var i = 0; i < array2D.length; i++) {
+            for (var j = 0; j < array2D[i].length; j++) {
+                newArr.push(array2D[i][j]);
+            }
         }
+        return newArr;
+    }
 
-        console.log(newArr);
+    function findValueSupport(Objmode, minSup) {
+        var totalOfItemSet = Object.keys(Objmode).length
+        var result = {}
+        // for (var key in Objmode) {
+        //     console.log(key ," ",Objmode[key]);
+        //     result[key] = (Objmode[key]/totalOfItemSet)*100;    
+        // }
+        Object.keys(Objmode).forEach(key => result[key] = (Objmode[key] / totalOfItemSet) * 100)
+        console.log('result', result)
     }
 </script>
 
