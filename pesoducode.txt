@@ -1,0 +1,8 @@
+
+1. input TID N ตัว
+2. input ItemSet ตาม TID
+3. input min_sup  min_con
+4.  find value sup form itemset (C1) 
+5.  itemsert value grater more sup  only(L1)
+6. loop
+7. bootfore
