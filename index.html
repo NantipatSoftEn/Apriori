@@ -74,15 +74,17 @@
         console.log(itemSetArray1D)
         console.log("mode", Objmode)
         var valueSup = findValueSupport(Objmode, itemSet.length, minSup)
-        var StatusOfItemSet = filterWithMinSup(valueSup, minSup)
+        var valueFilterSup = filterWithMinSup(valueSup, minSup)
+        var keyNames = Object.keys(valueFilterSup)
         console.log("Support", valueSup);
         
+       console.log("keyName",keyNames);
        
         
         var myString = "abce"
-        var c = combine(myString)
+        var c = combine(keyNames)
         console.log('combone', c);
-        console.log('filterString', filterString(c));
+        //console.log('filterString', filterString(c));
         
 
     };
@@ -135,7 +137,6 @@
     }
 
 
-
     function permut(string) {
         if (string.length < 2) return string; // This is our break condition
 
@@ -163,9 +164,11 @@
             result.push([...str].filter((_, pos) => (i >> pos) & 1).join(""));
         return result;
     }
+
     function filterString(stringArr) {
         return stringArr.filter(stringArr => stringArr.length === 2);
     }
+    
 </script>
 
 </html>
