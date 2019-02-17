@@ -72,11 +72,19 @@
         itemSetArray1D = changeArrayTo1D(itemSet)
         var Objmode = findMode(itemSetArray1D)
         console.log(itemSetArray1D)
-        console.log("mode",Objmode)
+        console.log("mode", Objmode)
         var valueSup = findValueSupport(Objmode, itemSet.length, minSup)
         var StatusOfItemSet = filterWithMinSup(valueSup, minSup)
-        console.log("Support",valueSup);
-        console.log('filter', filterWithMinSup(valueSup, minSup))
+        console.log("Support", valueSup);
+        
+       
+        
+        var myString = "abce"
+        var c = combine(myString)
+        console.log('combone', c);
+        console.log('filterString', filterString(c));
+        
+
     };
 
     function findMode(store) {
@@ -116,22 +124,47 @@
     }
 
     function filterWithMinSup(Objmode, minSup) {
-        var result = {}
         Object
             .keys(Objmode)
-            .filter(key => result[key] = Objmode[key] >= minSup)
-        return removeLowSup(result);
-    }
-
-    function removeLowSup(StatusOfItemSet) {
-         Object
-            .keys(StatusOfItemSet)
             .forEach(function (key) {
-                if (StatusOfItemSet[key] === false){
-                    delete StatusOfItemSet[key]
+                if (Objmode[key]  < minSup) {
+                    delete Objmode[key]
                 }
             })
-        return  StatusOfItemSet;
+        return Objmode;
+    }
+
+
+
+    function permut(string) {
+        if (string.length < 2) return string; // This is our break condition
+
+        var permutations = []; // This array will hold our permutations
+
+        for (var i = 0; i < string.length; i++) {
+            var char = string[i];
+
+            // Cause we don't want any duplicates:
+            if (string.indexOf(char) != i) // if char was used already
+                continue; // skip it this time
+
+            var remainingString = string.slice(0, i) + string.slice(i + 1, string.length); //Note: you can concat Strings via '+' in JS
+
+            for (var subPermutation of permut(remainingString))
+                permutations.push(char + subPermutation)
+
+        }
+        return permutations;
+    }
+
+    function combine(str){
+        const result = [];
+        for(let i = 1; i < Math.pow(2, str.length) - 1; i++)
+            result.push([...str].filter((_, pos) => (i >> pos) & 1).join(""));
+        return result;
+    }
+    function filterString(stringArr) {
+        return stringArr.filter(stringArr => stringArr.length === 2);
     }
 </script>
 
