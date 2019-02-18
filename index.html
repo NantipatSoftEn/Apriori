@@ -75,16 +75,17 @@
         console.log("mode", Objmode)
         var valueSup = findValueSupport(Objmode, itemSet.length, minSup)
         var valueFilterSup = filterWithMinSup(valueSup, minSup)
-        var keyNames = Object.keys(valueFilterSup)
+        var ArrayOfkeyNames = Object.keys(valueFilterSup)
         console.log("Support", valueSup);
         
-       console.log("keyName",keyNames);
-       
+       console.log("keyName",ArrayOfkeyNames);
+       var ArrayOfkeyIndex = ChangeKeyToIndex(ArrayOfkeyNames);
+
         
         var myString = "abce"
-        var c = combine(keyNames)
+        var c = combine(ArrayOfkeyIndex)
         console.log('combone', c);
-        //console.log('filterString', filterString(c));
+        console.log('filterString', filterString(c));
         
 
     };
@@ -169,6 +170,12 @@
         return stringArr.filter(stringArr => stringArr.length === 2);
     }
     
+    function ChangeKeyToIndex(Arrkey){
+        for(var i =0; i < Arrkey.length ; i++){
+            Arrkey[i]= i+1;
+        }
+        return Arrkey;
+    }
 </script>
 
 </html>
