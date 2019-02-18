@@ -68,7 +68,7 @@
         ];
 
         var minSup = 50;
-        //console.log(itemSet);
+        console.log(itemSet);
         itemSetArray1D = changeArrayTo1D(itemSet)
         var Objmode = findMode(itemSetArray1D)
         console.log(itemSetArray1D)
@@ -87,6 +87,7 @@
         var c = combine(ArrayOfIndex)
         console.log('combone', c);
         console.log('filterString', filterString(c));
+        
          
     };
 
@@ -141,7 +142,7 @@
     function combine(str){
         const result = [];
         for(let i = 1; i < Math.pow(2, str.length) - 1; i++)
-            result.push([...str].filter((_, pos) => (i >> pos) & 1).join(""));
+            result.push([...str].filter((_, pos) => (i >> pos) & 1).join(","));
         return result;
     }
 
@@ -168,6 +169,8 @@
         // output [Apple: 1, Cereal: 2, Beer: 3, Eggs: 4]
         return newArr;
     }
+
+
 </script>
 
 </html>
