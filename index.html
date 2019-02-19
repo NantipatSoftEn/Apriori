@@ -77,18 +77,19 @@
         console.log("valueSup", valueSup);
         var valueFilterSup = filterWithMinSup(valueSup, minSup)
 
-        var ArrayOfkeyNames = Object.keys(valueFilterSup)
-        var ArrayOfMapping  = MappingValue(ArrayOfkeyNames)
-        console.log("ArrayOfkeyNames",ArrayOfkeyNames);
-        console.log('MappingValue',MappingValue(ArrayOfkeyNames));
-       var ArrayOfIndex = ChangeKeyToIndex(ArrayOfkeyNames);
-        console.log("ArrayOfIndex",ArrayOfIndex);
+        var ArrayOfkeyNames = Object.keys(valueFilterSup).sort()
+        var ArrayOfMapping = MappingValue(ArrayOfkeyNames)
+        
+        console.log("ArrayOfkeyNames", ArrayOfkeyNames);
+        console.log('MappingValue', MappingValue(ArrayOfkeyNames));
+        var ArrayOfIndex = ChangeKeyToIndex(ArrayOfkeyNames);
+        console.log("ArrayOfIndex", ArrayOfIndex);
 
         var c = combine(ArrayOfIndex)
         console.log('combone', c);
-        console.log('filterString', filterString(c,1));
-        
-         
+        var Fstring = filterString(c, 1)
+        console.log('filterString', Fstring)
+        checkvalue(ArrayOfMapping, filterString, Fstring);
     };
 
     function findMode(store) {
@@ -131,17 +132,16 @@
         Object
             .keys(Objmode)
             .forEach(function (key) {
-                if (Objmode[key]  < minSup) {
+                if (Objmode[key] < minSup) {
                     delete Objmode[key]
                 }
             })
         return Objmode;
     }
 
-
-    function combine(str){
+    function combine(str) {
         const result = [];
-        for(let i = 1; i < Math.pow(2, str.length) - 1; i++)
+        for (let i = 1; i < Math.pow(2, str.length) - 1; i++)
             result.push([...str].filter((_, pos) => (i >> pos) & 1).join(","));
         return result;
     }
@@ -149,28 +149,49 @@
     function filterString(stringArr, AmoutOfcomma) {
         return stringArr.filter(stringArr => (stringArr.match(new RegExp(",", "g")) || []).length == AmoutOfcomma);
     }
-    
 
-    function ChangeKeyToIndex(Arrkey){
-        for(var i =0; i < Arrkey.length ; i++){
-            Arrkey[i]= i+1;
+    function ChangeKeyToIndex(Arrkey) {
+        for (var i = 0; i < Arrkey.length; i++) {
+            Arrkey[i] = i + 1;
         }
         // input ["Apple", "Cereal", "Beer", "Eggs"]
         // output [1, 2, 3, 4]
         return Arrkey;
     }
 
-    function MappingValue(Arrkey){ 
+    function MappingValue(Arrkey) {
         var newArr = []
-        for(var i =0; i < Arrkey.length ; i++){
-            newArr[Arrkey[i]]= i+1;
+        for (var i = 0; i < Arrkey.length; i++) {
+            newArr[Arrkey[i]] = i + 1;
         }
         // input ["Apple", "Cereal", "Beer", "Eggs"]
         // output [Apple: 1, Cereal: 2, Beer: 3, Eggs: 4]
-        return newArr;
+        
+        return swap(newArr);
     }
 
+    function checkvalue(MappingValue, itemSet, Fstring) {
 
+        for (let i = 0; i < Fstring.length; i++) {
+            const element = Fstring[i].split(",")
+            console.log('element',element);
+            for(let j = 0 ; j <element.length ;j++){
+                // var key=Object.keys(MappingValue)[i];
+                // var value = MappingValue[key]
+                console.log("check",MappingValue[element[i]]);
+                
+              
+            }
+        }
+    }
+
+    function swap(json){
+  var ret = {};
+  for(var key in json){
+    ret[json[key]] = key;
+  }
+  return ret;
+}
 </script>
 
 </html>
