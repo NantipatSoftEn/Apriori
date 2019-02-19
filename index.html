@@ -86,7 +86,7 @@
 
         var c = combine(ArrayOfIndex)
         console.log('combone', c);
-        console.log('filterString', filterString(c));
+        console.log('filterString', filterString(c,1));
         
          
     };
@@ -146,8 +146,8 @@
         return result;
     }
 
-    function filterString(stringArr) {
-        return stringArr.filter(stringArr => stringArr.length === 2);
+    function filterString(stringArr, AmoutOfcomma) {
+        return stringArr.filter(stringArr => (stringArr.match(new RegExp(",", "g")) || []).length == AmoutOfcomma);
     }
     
 
