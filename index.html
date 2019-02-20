@@ -79,7 +79,7 @@
 
         var ArrayOfkeyNames = Object.keys(valueFilterSup).sort()
         var ArrayOfMapping = MappingValue(ArrayOfkeyNames)
-        
+
         console.log("ArrayOfkeyNames", ArrayOfkeyNames);
         console.log('MappingValue', MappingValue(ArrayOfkeyNames));
         var ArrayOfIndex = ChangeKeyToIndex(ArrayOfkeyNames);
@@ -89,7 +89,7 @@
         console.log('combone', c);
         var Fstring = filterString(c, 1)
         console.log('filterString', Fstring)
-        checkvalue(ArrayOfMapping, filterString, Fstring);
+        checkvalue(ArrayOfMapping, itemSet, Fstring);
     };
 
     function findMode(store) {
@@ -166,32 +166,35 @@
         }
         // input ["Apple", "Cereal", "Beer", "Eggs"]
         // output [Apple: 1, Cereal: 2, Beer: 3, Eggs: 4]
-        
+
         return swap(newArr);
     }
 
     function checkvalue(MappingValue, itemSet, Fstring) {
-
         for (let i = 0; i < Fstring.length; i++) {
             const element = Fstring[i].split(",")
-            console.log('element',element);
-            for(let j = 0 ; j <element.length ;j++){
-                // var key=Object.keys(MappingValue)[i];
-                // var value = MappingValue[key]
-                console.log("check",MappingValue[element[i]]);
-                
-              
+            //console.log('index:', i, 'element', element);
+            for (let j = 0; j < element.length; j++) {
+                //console.log("jdex:", j, "check", MappingValue[element[j]]);
+                for (var m = 0; m < itemSet.length ; m++) {
+                    for (var n = 0; n < itemSet[m].length ; n++) {
+                        if (itemSet[m][n]  == MappingValue[element[j]]) {
+                            console.log('itemset',itemSet[m][n] ); 
+                        }
+                    }
+                }
+
             }
         }
     }
 
-    function swap(json){
-  var ret = {};
-  for(var key in json){
-    ret[json[key]] = key;
-  }
-  return ret;
-}
+    function swap(json) {
+        var ret = {};
+        for (var key in json) {
+            ret[json[key]] = key;
+        }
+        return ret;
+    }
 </script>
 
 </html>
