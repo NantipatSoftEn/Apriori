@@ -1,63 +1,52 @@
 <!DOCTYPE html>
 <html>
 
-    <head>
-        <meta charset="utf-8"/>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Algorithm
-        </title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link
-            rel="stylesheet"
-            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-            integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-            crossorigin="anonymous"/>
-        <link rel="stylesheet" href="css/customize.css">
-        <script
-            src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-            crossorigin="anonymous"></script>
-        <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-            crossorigin="anonymous"></script>
-        <script
-            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-            crossorigin="anonymous"></script>
-    </head>
-    <link
-        href="https://fonts.googleapis.com/css?family=Special+Elite"
-        rel="stylesheet"/>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Algorithm
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous" />
+    <link rel="stylesheet" href="css/customize.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</head>
+<link href="https://fonts.googleapis.com/css?family=Special+Elite" rel="stylesheet" />
 
-    <body>
-        <div class="container">
-            <nav class="navbar navbar-light bg-light">
-                <a class="navbar-brand" href="#">
-                    <a class="navbar-brand" href="#">Navbar</a>
-                </a>
-            </nav>
-            <div class="row">
-                <div class="col-sm-3">
-                    <div class="form-group ">
-                        <label for="">Transection</label>
-                        <input type="text" class="form-control" id="Tid" placeholder="Number only"/>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="form-group ">
-                        <label for="">ItemSet</label>
-                        <textarea class="form-control" rows="5" id="ItemSet"></textarea>
-                    </div>
+<body>
+    <div class="container">
+        <nav class="navbar navbar-light bg-light">
+            <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="#">Navbar</a>
+            </a>
+        </nav>
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="form-group ">
+                    <label for="">Transection</label>
+                    <input type="text" class="form-control" id="Tid" placeholder="Number only" />
                 </div>
             </div>
-            <div class="row">
-                <div class="col-sm-4">
-                    <button type="button" class="btn btn-primary" onclick="getValue();">Calculate</button>
+            <div class="col-sm-4">
+                <div class="form-group ">
+                    <label for="">ItemSet</label>
+                    <textarea class="form-control" rows="5" id="ItemSet"></textarea>
                 </div>
             </div>
-
         </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <button type="button" class="btn btn-primary" onclick="getValue();">Calculate</button>
+            </div>
+        </div>
+
+    </div>
     </div>
 </body>
 <script type="text/javascript">
@@ -65,20 +54,36 @@
         // var Tid = document     .getElementById("Tid").value; console.log(Tid); var
         // ItemSet = document     .getElementById("ItemSet") .value;
         // console.log(ItemSet);
+        // var itemSet = [
+        //     [
+        //         "Apple", "Cereal", "Diapers"
+        //     ],
+        //     [
+        //         "Beer", "Cereal", "Eggs"
+        //     ],
+        //     [
+        //         "Apple", "Beer", "Cereal", "Eggs"
+        //     ],
+        //     ["Beer", "Eggs"]
+        // ];
+
         var itemSet = [
             [
-                "Apple", "Cereal", "Diapers"
+                "g1", "g3", "g4"
             ],
             [
-                "Beer", "Cereal", "Eggs"
+                "g2", "g3", "g5"
             ],
             [
-                "Apple", "Beer", "Cereal", "Eggs"
+                "g1", "g2", "g3", "g5"
             ],
-            ["Beer", "Eggs"]
+            [
+                "g2", "g5"
+            ],
         ];
 
-        var minSup = 50;
+
+        var minSup = 40;
         console.log(itemSet);
         itemSetArray1D = changeArrayTo1D(itemSet)
         var Objmode = findMode(itemSetArray1D)
@@ -125,15 +130,15 @@
 
         }
         console.log('===========================================f=', f);
-        console.log( chageObjKeyWhichNumberToName(f, ArrayOfMapping));
-        
-       
+        console.log(chageObjKeyWhichNumberToName(f, ArrayOfMapping));
+
+
     };
 
     function findMode(store) {
         distribution = {},
-        max = 0,
-        result = [];
+            max = 0,
+            result = [];
         store.forEach(function (a) {
             distribution[a] = (distribution[a] || 0) + 1;
             if (distribution[a] > max) {
@@ -179,7 +184,7 @@
 
     function combine(str) {
         const result = [];
-        for (let i = 1; i < Math.pow(2, str.length) - 1; i++) 
+        for (let i = 1; i < Math.pow(2, str.length) - 1; i++)
             result.push([...str].filter((_, pos) => (i >> pos) & 1).join(","));
         return result;
     }
@@ -252,13 +257,13 @@
     function merg(filter2D, InsentValue) {
         var objMerg = {}
         for (var i = 0; i < InsentValue.length; i++) {
-            if (InsentValue[i] != null) 
+            if (InsentValue[i] != null)
                 objMerg[InsentValue[i]] = filter2D[i]
         }
         return objMerg
     }
 
-    function chageObjKeyWhichNumberToName(fArr, MappingValue,) {
+    function chageObjKeyWhichNumberToName(fArr, MappingValue, ) {
         var result = []
         for (let index = 0; index < fArr.length; index++) {
             var newObj = {}
