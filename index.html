@@ -171,23 +171,31 @@
     }
 
     function checkvalue(MappingValue, itemSet, Fstring) {
-        for (let i = 0; i < Fstring.length; i++) {
-            const element = Fstring[i].split(",")
-            //console.log('index:', i, 'element', element);
-            for (let j = 0; j < element.length; j++) {
-                //console.log("jdex:", j, "check", MappingValue[element[j]]);
+        for (var i = 0; i <  1; i++) {
+            const element = Fstring[0].split(",")
+            console.log('index:', 0, 'element', element);
+            var count = new Array(element.length).fill(null)
+            for (var j = 0; j < element.length; j++) {
+                console.log("=================start new Loop===========");
                 for (var m = 0; m < itemSet.length ; m++) {
                     for (var n = 0; n < itemSet[m].length ; n++) {
                         if (itemSet[m][n]  == MappingValue[element[j]]) {
-                            console.log('itemset',itemSet[m][n] ); 
+                            console.log('itemset',itemSet[m][n],"==", MappingValue[element[j]] ); 
+                            count[j]=true;
+                            console.log(' n',n,'count ', count);
+                            // if (count.every(returnTrue) == true){
+                            //     break
+                            // }   
                         }
                     }
                 }
-
             }
+            
         }
     }
-
+    function  returnTrue(value) {
+        return value  == true
+    }
     function swap(json) {
         var ret = {};
         for (var key in json) {
