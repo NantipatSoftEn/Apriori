@@ -87,9 +87,13 @@
 
         var c = combine(ArrayOfIndex)
         console.log('combone', c);
-        var Fstring = filterString(c, 1)
+        var Fstring = filterString(c, 2).sort()
         console.log('filterString', Fstring)
-        checkvalue(ArrayOfMapping, itemSet, Fstring);
+        var Tvalue =checkvalue(ArrayOfMapping, itemSet, Fstring);
+        FindSupport(Tvalue,itemSet.length,minSup)
+        
+       
+        
     };
 
     function findMode(store) {
@@ -171,27 +175,39 @@
     }
 
     function checkvalue(MappingValue, itemSet, Fstring) {
-        var Tcount  = 0
-        for (var i = 0; i < 1; i++) {
-            const element = Fstring[5].split(",")
+        var TranSectionCount = new Array(Fstring.length).fill(0)
+        for (var i = 0; i < Fstring.length; i++) {
+            const element = Fstring[i].split(",")
             for (var m = 0; m < itemSet.length; m++) {
-                console.log("=================start new Loop===========");
+                //console.log("=================start new Loop===========");
                 var count = new Array(element.length).fill(null)
                 for (var n = 0; n < itemSet[m].length; n++) {
                     for (var j = 0; j < element.length; j++) {
                         if (itemSet[m][n] == MappingValue[element[j]]) {
-                            console.log(itemSet[m][n], '==', MappingValue[element[j]]);
+                            //console.log(itemSet[m][n], '==', MappingValue[element[j]]);
                             count[j] = true
                         }
                     }
                 }
-                console.log('count',count);
-                if (count.every(returnTrue)){
-                    Tcount++
+                //console.log('count', count);
+                if (count.every(returnTrue)) {
+                    TranSectionCount[i]++
                 }
             }
         }
+        //console.log('Tcount', TranSectionCount);
+        return TranSectionCount 
     }
+
+    function   FindSupport (TranSectionArr,totalOfTransection,minSup) {
+        for (var index = 0; index < TranSectionArr.length; index++) {
+            TranSectionArr[index] = (TranSectionArr[index]/totalOfTransection)*100
+        }
+        
+        console.log(TranSectionArr);
+    }
+
+
 
     function returnTrue(value) {
         return value == true
