@@ -20,14 +20,14 @@
 <link href="https://fonts.googleapis.com/css?family=Special+Elite" rel="stylesheet" />
 
 <body>
-    <div class="container">
+    <div class="container h-100">
         <nav class="navbar navbar-light bg-light">
             <a class="navbar-brand" href="#">
                 <a class="navbar-brand" href="#">Apriori algorithm</a>
             </a>
         </nav>
         <div class="row">
-            <div class="col-sm-8">
+            <div class="col-sm-12">
                 <div class="form-group ">
                     <label for="">ItemSet</label>
                     <textarea class="form-control" rows="5" id="ItemSet">
@@ -36,30 +36,28 @@ Apple-Cereal-Diapers,Beer-Cereal-Eggs,Apple-Beer-Cereal-Eggs,Beer-Eggs</textarea
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-4">
+            <div class="col-sm-3">
                 <div class="form-group ">
                     <label for="">minSup</label>
                     <input type="text" class="form-control" id="minSup" placeholder="Number only" value="50" />
                 </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-3">
                 <div class="form-group ">
                     <label for="">minCon</label>
                     <input type="text" class="form-control" id="minCon" placeholder="Number only" />
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-4">
+            <div class="col-sm-3">
                 <div class="form-group ">
-                    <button type="button" class="btn btn-primary" onclick="getValue();">Calculate</button>
+                    <label for=""> Find Frequent itemSet</label>
+                    <button type="button" class="btn btn-primary" onclick="getValue();">Click It</button>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-4">
                 <div id="result">
-
                 </div>
             </div>
         </div>
