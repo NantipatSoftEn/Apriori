@@ -31,10 +31,7 @@
                 <div class="form-group ">
                     <label for="">ItemSet</label>
                     <textarea class="form-control" rows="5" id="ItemSet">
-Apple-Cereal-Diapers,
-Beer-Cereal-Eggs,
-Apple-Beer-Cereal-Eggs,
-Beer-Eggs</textarea>
+Apple-Cereal-Diapers,Beer-Cereal-Eggs,Apple-Beer-Cereal-Eggs,Beer-Eggs</textarea>
                 </div>
             </div>
         </div>
@@ -42,19 +39,28 @@ Beer-Eggs</textarea>
             <div class="col-sm-4">
                 <div class="form-group ">
                     <label for="">minSup</label>
-                    <input type="text" class="form-control" id="minSup" placeholder="Number only" />
+                    <input type="text" class="form-control" id="minSup" placeholder="Number only" value="50" />
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="form-group ">
-                    <label for="">minSup</label>
+                    <label for="">minCon</label>
                     <input type="text" class="form-control" id="minCon" placeholder="Number only" />
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-4">
-                <button type="button" class="btn btn-primary" onclick="getValue();">Calculate</button>
+                <div class="form-group ">
+                    <button type="button" class="btn btn-primary" onclick="getValue();">Calculate</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div id="result">
+
+                </div>
             </div>
         </div>
 
@@ -63,29 +69,26 @@ Beer-Eggs</textarea>
 </body>
 <script type="text/javascript" src="js/algorithm.js"></script>
 <script>
-    function getValue() {
-        // var TidForm = document.getElementById("Tid").value;
-        // console.log(TidForm);
-        var ItemSetForm = document.getElementById("ItemSet").value;
+    // function getValue() {
+    //     // var TidForm = document.getElementById("Tid").value;
+    //     // console.log(TidForm);
+    //     var ItemSetForm = document.getElementById("ItemSet").value;
 
-        var ItemSetFormArr = ItemSetForm.split(",")
-        console.log('ItemSetFormArr', ItemSetFormArr);
-        var toArray = []
-        for (let index = 0; index < ItemSetFormArr.length; index++) {
-             toArray[index] = ItemSetFormArr[index].split("-")
-
-
-        }
-        console.log(toArray);
-        
+    //     var ItemSetFormArr = ItemSetForm.split(",")
+    //     console.log('ItemSetFormArr', ItemSetFormArr);
+    //     var itemSet = []
+    //     for (let index = 0; index < ItemSetFormArr.length; index++) {
+    //         itemSet[index] = ItemSetFormArr[index].split("-")
+    //     }
+    //     console.log(itemSet);
 
 
-        var minSupForm = document.getElementById("minSup").value;
-        console.log(minSupForm);
 
-        var minConForm = document.getElementById("minCon").value;
-        console.log(minConForm);
-    }
+    ;
+
+    //     var minConForm = document.getElementById("minCon").value;
+    //     console.log(minConForm);
+    // }
 </script>
 
 
