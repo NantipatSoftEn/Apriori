@@ -21,9 +21,9 @@ function getValue() {
     var Objmode = findMode(itemSetArray1D)
     //console.log(itemSetArray1D)
     //console.log("mode", Objmode)
-    var valueSup = findValueSupport(Objmode, itemSet.length, minSup)
-    //console.log("valueSup", valueSup);
-    var valueFilterSup = filterWithMinSup(valueSup, minSup)
+    var  ObjSup = findValueSupportObject(Objmode, itemSet.length, minSup)
+    //console.log("valueSup", ObjSup);
+    var valueFilterSup = filterWithMinSup(ObjSup, minSup)
 
     var ArrayOfkeyNames = Object
         .keys(valueFilterSup)
@@ -32,28 +32,27 @@ function getValue() {
 
     //console.log("ArrayOfkeyNames", ArrayOfkeyNames);
     //.log('MappingValue', MappingValue(ArrayOfkeyNames));
-
     var f = []
     for (var index = 0; index < 3; index++) {
         //console.log('=============Iteration ', index ,'================');
 
         var ArrayOfIndex = ChangeKeyToIndex(ArrayOfkeyNames);
         //console.log("ArrayOfIndex", ArrayOfIndex);
-        var c = combine(ArrayOfIndex)
+        var c = combination (ArrayOfIndex)
         //console.log('combone', c);
         var Fstring = filterString(c, index).sort()
         //console.log('filterString', Fstring)
-        var Tvalue = checkvalue(ArrayOfMapping, itemSet, Fstring);
-        //console.log('Tvalue', Tvalue);
+        var TranSectionvalue = checkvalue(ArrayOfMapping, itemSet, Fstring);
+        //console.log('TranSectionvalue', TranSectionvalue);
 
-        var filter2D = FindSupport(Tvalue, itemSet.length, minSup)
-        //console.log('filter2D', filter2D);
-        var InsentValue = Investvalue(Fstring, filter2D, minSup)
-        //console.log('InsentValue', InsentValue);
+        var ArrSup = FindSupportFormTvalue(TranSectionvalue, itemSet.length, minSup)
+        //console.log('ArrSup', ArrSup);
+        var  ArrIndex = SelectIndexOfArrSupOnMinSup(Fstring, ArrSup, minSup)
+        //console.log('InsentValue', ArrIndex);
 
-        var mergV = merg(filter2D, InsentValue);
+        var mergValue = merg(ArrSup, ArrIndex);
         //console.log('mergV', mergV);
-        f.push(mergV)
+        f.push(mergValue)
 
     }
     //console.log('', f);
@@ -64,7 +63,7 @@ function getValue() {
 };
 
 function Tohtml(ArrOfObj) {
-    
+
     var tableMock = "<table class='table table-bordered'>";
     tableMock += "<tr>";
     tableMock += "<th scope='col'>Frequent itemSet</th>";
@@ -80,9 +79,9 @@ function Tohtml(ArrOfObj) {
                 tableMock += "<td>" + ArrOfObj[i][key] + "</td>";
                 tableMock += "</tr>";
             })
-            
+
     }
-    tableMock+="</table>"
+    tableMock += "</table>"
     $("#result").html(tableMock);
 }
 
@@ -114,7 +113,7 @@ function changeArrayTo1D(array2D) {
     return newArr;
 }
 
-function findValueSupport(Objmode, totalOfTransection, minSup) {
+function findValueSupportObject(Objmode, totalOfTransection, minSup) {
     var result = {}
     Object
         .keys(Objmode)
@@ -133,7 +132,7 @@ function filterWithMinSup(Objmode, minSup) {
     return Objmode;
 }
 
-function combine(str) {
+function combination (str) {
     const result = [];
     for (let i = 1; i < Math.pow(2, str.length) - 1; i++)
         result.push([...str].filter((_, pos) => (i >> pos) & 1).join(","));
@@ -188,14 +187,14 @@ function checkvalue(MappingValue, itemSet, Fstring) {
     return TranSectionCount
 }
 
-function FindSupport(TranSectionArr, totalOfTransection, minSup) {
+function FindSupportFormTvalue(TranSectionArr, totalOfTransection, minSup) {
     for (var index = 0; index < TranSectionArr.length; index++) {
         TranSectionArr[index] = (TranSectionArr[index] / totalOfTransection) * 100
     }
     return TranSectionArr
 }
 
-function Investvalue(Fstring, ArrSup, minSup) {
+function SelectIndexOfArrSupOnMinSup(Fstring, ArrSup, minSup) {
     var element = new Array(ArrSup.length).fill(null)
     for (let index = 0; index < ArrSup.length; index++) {
         if (ArrSup[index] >= minSup) {
