@@ -21,7 +21,7 @@ function getValue() {
     var Objmode = findMode(itemSetArray1D)
     //console.log(itemSetArray1D)
     //console.log("mode", Objmode)
-    var  ObjSup = findValueSupportObject(Objmode, itemSet.length, minSup)
+    var ObjSup = findValueSupportObject(Objmode, itemSet.length, minSup)
     //console.log("valueSup", ObjSup);
     var valueFilterSup = filterWithMinSup(ObjSup, minSup)
 
@@ -38,7 +38,7 @@ function getValue() {
 
         var ArrayOfIndex = ChangeKeyToIndex(ArrayOfkeyNames);
         //console.log("ArrayOfIndex", ArrayOfIndex);
-        var c = combination (ArrayOfIndex)
+        var c = combination(ArrayOfIndex)
         //console.log('combone', c);
         var Fstring = filterString(c, index).sort()
         //console.log('filterString', Fstring)
@@ -47,7 +47,7 @@ function getValue() {
 
         var ArrSup = FindSupportFormTvalue(TranSectionvalue, itemSet.length, minSup)
         //console.log('ArrSup', ArrSup);
-        var  ArrIndex = SelectIndexOfArrSupOnMinSup(Fstring, ArrSup, minSup)
+        var ArrIndex = SelectIndexOfArrSupOnMinSup(Fstring, ArrSup, minSup)
         //console.log('InsentValue', ArrIndex);
 
         var mergValue = merg(ArrSup, ArrIndex);
@@ -61,6 +61,8 @@ function getValue() {
     Tohtml(FrequentItemSetFilter)
 
 };
+
+
 
 function Tohtml(ArrOfObj) {
 
@@ -132,7 +134,7 @@ function filterWithMinSup(Objmode, minSup) {
     return Objmode;
 }
 
-function combination (str) {
+function combination(str) {
     const result = [];
     for (let i = 1; i < Math.pow(2, str.length) - 1; i++)
         result.push([...str].filter((_, pos) => (i >> pos) & 1).join(","));
