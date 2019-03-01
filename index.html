@@ -19,70 +19,81 @@
 </head>
 <link href="https://fonts.googleapis.com/css?family=Itim|Patrick+Hand" rel="stylesheet">
 
-
 <body>
-    <div class="container h-100">
-        <nav class="navbar navbar-light bg-light">
-            <a class="navbar-brand" href="#">
-                <a class="navbar-brand" href="#">Apriori algorithm</a>
-            </a>
-        </nav>
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="form-group ">
-                    <label for="">ItemSet</label>
-                    <textarea class="form-control" rows="5" id="ItemSet">
-Apple-Cereal-Diapers,Beer-Cereal-Eggs,Apple-Beer-Cereal-Eggs,Beer-Eggs</textarea>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-3">
-                <div class="form-group ">
-                    <label for="">minSup</label>
-                    <input type="text" class="form-control" id="minSup" placeholder="Number only" value="50" />
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="form-group ">
-                    <label for="">minCon</label>
-                    <input type="text" class="form-control" id="minCon" placeholder="Number only" />
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="form-group ">
-                    <label for=""> Find Frequent itemSet</label>
-                    <button type="button" class="btn btn-primary" onclick="getValue();">Click It</button>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-6">
-                <div id="result">
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="jumbotron">
-                    <h1 class="display-6">Read Me</h1>
-                    <p class="lead"> </p>
-                    <hr class="my-4">
-                    <p> You must input chareacter '-' for split item and </p>
-                    <p> You must input chareacter',' for TransectionId </p>
-                    <hr class="my-4">
-                    <h1 class="display-6">Example</h1>
-                    <p>T1=["Apple", "Cereal", "Diapers"],</p>
-                    <p>T2= ["Beer", "Cereal", "Eggs"],</p>
-                    <p>T3= ["Apple", "Beer", "Cereal", "Eggs"] </p>
-                    <p>T4=["Beer", "Eggs"] </p>
+    <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample10"
+            aria-controls="navbarsExample10" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
+        <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample10">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">midter
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#">Disabled</a>
+                </li>
+             
+            </ul>
+        </div>
+    </nav> -->
+    <main role="main">
+
+        <!-- Main jumbotron for a primary marketing message or call to action -->
+        <div class="jumbotron">
+            <div class="container">
+                <h1 class="display-6">Apriori Algorithm</h1>
+                <p></p>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group ">
+                        <label for="">ItemSet</label>
+                        <textarea class="form-control" rows="5" id="ItemSet">
+Apple-Cereal-Diapers,Beer-Cereal-Eggs,Apple-Beer-Cereal-Eggs,Beer-Eggs</textarea>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group ">
+                        <label for="">minSup</label>
+                        <input type="text" class="form-control" id="minSup" placeholder="Number only" value="50" />
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2">
+                                <button type="button" class="btn btn-primary btn-lg btn3d" onclick="getValue();">Click It</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group ">
+                        <label for="">minCon</label>
+                        <input type="text" class="form-control" id="minCon" placeholder="Number only" />
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group ">
+                        <label for="">Transection</label>
+                        <input type="text" class="form-control" id="Transection" placeholder="Number only" readonly />
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-sm-6">
+                    <div id="result"></div>
                 </div>
             </div>
         </div>
-    </div>
 </body>
 <script type="text/javascript" src="js/algorithm.js"></script>
-<script>
-</script>
-
+<script></script>
 
 </html>
