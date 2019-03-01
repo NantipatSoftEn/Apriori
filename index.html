@@ -87,30 +87,40 @@
             <p>Please read <a href="https://github.com/nostalgic-css/NES.css" target="_blank" rel="noopener">README.md</a>.</p>
           </section> -->
 
+
         <!-- Usage -->
         <section class="topic">
           <h2 id="usage"><a href="#usage">#</a>Usage</h2>
           <p>NES.css only provides components. You will need to define your own layout.</p>
+        </section>
 
 
-          <label for="textarea_field">Textarea</label>
-          <textarea id="textarea_field" class="nes-textarea">dssdfdsf</textarea>
 
-          <div class="nes-field is-inline">
-            <label for="inline_field"> minSupport</label>
-            <input type="text" id="conSup" class="nes-input is-success" placeholder="Number only">
+        <section class="nes-container with-title">
+          <h3 class="title">Input  Data</h3>
+          <div id="texts" class="item">
+            <label for="textarea_field">ItemSet</label>
+            <textarea id="ItemSet" class="nes-textarea">Apple-Cereal-Diapers,Beer-Cereal-Eggs,Apple-Beer-Cereal-Eggs,Beer-Eggs</textarea>
+
+            <div class="nes-field is-inline">
+              <label for="inline_field"> minSupport</label>
+              <input type="text" id="minSup" class="nes-input is-success" placeholder="Number only">
+            </div>
+
+            <div class="nes-field is-inline">
+              <label for="warning_field">conSupport</label>
+              <input type="text" id="warning_field" class="nes-input is-warning" placeholder="Number onl">
+            </div>
+
+            <a class="nes-btn is-primary">Click It</a>
           </div>
 
-          <div class="nes-field is-inline">
-            <label for="warning_field">conSupport</label>
-            <input type="text" id="warning_field" class="nes-input is-warning" placeholder="Number onl">
-          </div>
-
-          <a class="nes-btn is-primary">Click It</a>
+        </section>
 
 
-        
-   
+
+
+
       </main>
 
       <footer>
@@ -133,6 +143,7 @@
   </div>
 </body>
 <script src="./script.js"></script>
+<script src="js/algorithm.js"></script>
 <script>
   const h = document.querySelector('head');
   ['./lib/dialog-polyfill.css', './lib/highlight-theme.css'].forEach(a => {
