@@ -32,7 +32,7 @@ function getValue() {
 
     //console.log("ArrayOfkeyNames", ArrayOfkeyNames);
     //.log('MappingValue', MappingValue(ArrayOfkeyNames));
-    var f = []
+    var Container = []
     for (var index = 0; index < 3; index++) {
         //console.log('=============Iteration ', index ,'================');
 
@@ -52,11 +52,11 @@ function getValue() {
 
         var mergValue = merg(ArrSup, ArrIndex);
         //console.log('mergV', mergV);
-        f.push(mergValue)
+        Container.push(mergValue)
 
     }
     //console.log('', f);
-    const FrequentItemSetFilter = chageObjKeyWhichNumberToName(f, ArrayOfMapping)
+    const FrequentItemSetFilter = chageObjKeyWhichNumberToName(Container, ArrayOfMapping)
     console.log("Frequent itemSet", FrequentItemSetFilter);
     Tohtml(FrequentItemSetFilter)
 
@@ -133,6 +133,7 @@ function filterWithMinSup(Objmode, minSup) {
         })
     return Objmode;
 }
+
 
 function combination(str) {
     const result = [];
