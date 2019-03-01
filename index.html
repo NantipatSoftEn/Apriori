@@ -97,7 +97,7 @@
 
 
         <section class="nes-container with-title">
-          <h3 class="title">Input  Data</h3>
+          <h3 class="title">Input Data</h3>
           <div id="texts" class="item">
             <label for="textarea_field">ItemSet</label>
             <textarea id="ItemSet" class="nes-textarea">Apple-Cereal-Diapers,Beer-Cereal-Eggs,Apple-Beer-Cereal-Eggs,Beer-Eggs</textarea>
@@ -109,10 +109,21 @@
 
             <div class="nes-field is-inline">
               <label for="warning_field">conSupport</label>
-              <input type="text" id="warning_field" class="nes-input is-warning" placeholder="Number onl">
+              <input type="text" id="warning_field" class="nes-input is-warning" placeholder="Number only">
             </div>
 
-            <a class="nes-btn is-primary">Click It</a>
+            <a class="nes-btn is-primary" onclick="getValue();">Click It</a>
+          </div>
+
+        </section>
+
+        <section class="nes-container with-title">
+          <h3 class="title">Frq ItemSet</h3>
+          <div id="texts" class="item">
+            <div class="nes-table-responsive">
+              <div class="result"></div>
+            </div>
+
           </div>
 
         </section>

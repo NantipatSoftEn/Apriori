@@ -66,10 +66,10 @@ function getValue() {
 
 function Tohtml(ArrOfObj) {
 
-    var tableMock = "<table class='table table-bordered'>";
+    var tableMock = "<table class='nes-table is-bordered is-dark'>";
     tableMock += "<tr>";
-    tableMock += "<th scope='col'>Frequent itemSet</th>";
-    tableMock += "<th scope='col'>Support (%)</th>";
+    tableMock += "<th>Frequent itemSet</th>";
+    tableMock += "<th>Support (%)</th>";
     tableMock += "</tr>";
     for (var i = 0; i < ArrOfObj.length; i++) {
         Object
