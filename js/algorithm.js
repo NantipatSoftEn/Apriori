@@ -55,11 +55,13 @@ function getValue() {
         Container.push(mergValue)
 
     }
-    //console.log('', f);
+    console.log('Container', Container);
     const FrequentItemSetFilter = chageObjKeyWhichNumberToName(Container, ArrayOfMapping)
     console.log("Frequent itemSet", FrequentItemSetFilter);
     Tohtml(FrequentItemSetFilter)
-
+    console.log(perm(["Apple","Cereal"]).join("\n"));
+    console.log(perm(["Beer-Cereal","Eggs"]).join("\n"));
+    console.log(perm(["Beer","Cereal-Eggs"]).join("\n"));
 };
 
 
@@ -251,6 +253,24 @@ function swap(json) {
     var ret = {};
     for (var key in json) {
         ret[json[key]] = key;
+    }
+    return ret;
+}
+
+
+function perm(xs) {
+    let ret = [];
+
+    for (let i = 0; i < xs.length; i = i + 1) {
+        let rest = perm(xs.slice(0, i).concat(xs.slice(i + 1)));
+
+        if (!rest.length) {
+            ret.push([xs[i]])
+        } else {
+            for (let j = 0; j < rest.length; j = j + 1) {
+                ret.push([xs[i]].concat(rest[j]))
+            }
+        }
     }
     return ret;
 }
