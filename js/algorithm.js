@@ -1,5 +1,7 @@
 function getValue() {
-    var ItemSetForm = document.getElementById("ItemSet").value;
+    var ItemSetForm = document
+        .getElementById("ItemSet")
+        .value;
 
     var ItemSetFormArr = ItemSetForm.split(",")
     //console.log('ItemSetFormArr', ItemSetFormArr);
@@ -8,19 +10,16 @@ function getValue() {
         itemSet[index] = ItemSetFormArr[index].split("-")
     }
 
-    var minSup = document.getElementById("minSup").value;
-    //console.log(minSup)
-    //   var itemSet = [
-    //       ["Apple", "Cereal", "Diapers"],
-    //       ["Beer", "Cereal", "Eggs"],
-    //       ["Apple", "Beer", "Cereal", "Eggs"],
-    //       ["Beer", "Eggs"]
-    //   ];
+    var minSup = document
+        .getElementById("minSup")
+        .value;
+    // console.log(minSup)   var itemSet = [       ["Apple", "Cereal", "Diapers"],
+    //    ["Beer", "Cereal", "Eggs"],       ["Apple", "Beer", "Cereal", "Eggs"],
+    //   ["Beer", "Eggs"]   ];
     console.log("itemSet", itemSet);
     itemSetArray1D = changeArrayTo1D(itemSet)
     var Objmode = findMode(itemSetArray1D)
-    //console.log(itemSetArray1D)
-    //console.log("mode", Objmode)
+    //console.log(itemSetArray1D) console.log("mode", Objmode)
     var ObjSup = findValueSupportObject(Objmode, itemSet.length, minSup)
     //console.log("valueSup", ObjSup);
     var valueFilterSup = filterWithMinSup(ObjSup, minSup)
@@ -30,8 +29,8 @@ function getValue() {
         .sort()
     var ArrayOfMapping = MappingValue(ArrayOfkeyNames)
 
-    //console.log("ArrayOfkeyNames", ArrayOfkeyNames);
-    //.log('MappingValue', MappingValue(ArrayOfkeyNames));
+    // console.log("ArrayOfkeyNames", ArrayOfkeyNames); .log('MappingValue',
+    // MappingValue(ArrayOfkeyNames));
     var Container = []
     for (var index = 0; index < 3; index++) {
         //console.log('=============Iteration ', index ,'================');
@@ -55,16 +54,53 @@ function getValue() {
         Container.push(mergValue)
 
     }
-    console.log('Container', Container);
+
     const FrequentItemSetFilter = chageObjKeyWhichNumberToName(Container, ArrayOfMapping)
     console.log("Frequent itemSet", FrequentItemSetFilter);
     Tohtml(FrequentItemSetFilter)
-    console.log(perm(["Apple","Cereal"]).join("\n"));
-    console.log(perm(["Beer-Cereal","Eggs"]).join("\n"));
-    console.log(perm(["Beer","Cereal-Eggs"]).join("\n"));
+
+    console.log('Container', Container);
+
+    console.log(perm(["1", "3"]).join("\n"));
+    console.log(perm(["2-3", "4"]).join("\n"));
+    console.log(perm(["2", "3-4"]).join("\n"));
+    console.log(perm(["2-4", "3"]).join("\n"));
+    console.log(SettingPermu(["2", "3", "4", "5"]));
+
+
 };
 
+function SettingPermu(strArr) {
+    //input [2,3,4]
+    const Contanner = []
+    for (let index = 0; index < strArr.length; index++) {
+        var temp = []
+        temp[0] = strArr[index]
+        if (index + 1 >= strArr.length) {
+            temp[1] = strArr[0]
+        } else if (index + 1 < strArr.length) {
+            temp[1] = strArr[index + 1]
+        }
+        console.log('temp', temp);
 
+        const copy = [...strArr];
+
+        copy[index] = temp
+
+        if (index + 1 >= strArr.length) {
+            copy.splice(0, 1);
+        } else if (index + 1 < strArr.length) {
+            copy.splice(index + 1, 1);
+        }
+
+        //console.log('copy', copy);
+        Contanner.push(copy)
+
+    }
+    // console.log('strArr', strArr);
+    // console.log('contanner',Contanner);
+    return Contanner
+}
 
 function Tohtml(ArrOfObj) {
 
@@ -135,7 +171,6 @@ function filterWithMinSup(Objmode, minSup) {
         })
     return Objmode;
 }
-
 
 function combination(str) {
     const result = [];
@@ -256,7 +291,6 @@ function swap(json) {
     }
     return ret;
 }
-
 
 function perm(xs) {
     let ret = [];
