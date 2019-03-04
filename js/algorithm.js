@@ -65,7 +65,8 @@ function getValue() {
     console.log(perm(["2-3", "4"]).join("\n"));
     console.log(perm(["2", "3-4"]).join("\n"));
     console.log(perm(["2-4", "3"]).join("\n"));
-    console.log(SettingPermu(["2", "3", "4", "5"]));
+    var set = SettingPermu(["2", "3", "4", "5"])
+    console.log(set);
 
 
 };
@@ -74,12 +75,12 @@ function SettingPermu(strArr) {
     //input [2,3,4]
     const Contanner = []
     for (let index = 0; index < strArr.length; index++) {
-        var temp = []
-        temp[0] = strArr[index]
+        var temp = ""
+        temp += strArr[index] + "-"
         if (index + 1 >= strArr.length) {
-            temp[1] = strArr[0]
+            temp += strArr[0]
         } else if (index + 1 < strArr.length) {
-            temp[1] = strArr[index + 1]
+            temp += strArr[index + 1]
         }
         console.log('temp', temp);
 
