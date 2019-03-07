@@ -61,14 +61,19 @@ function getValue() {
 
     console.log('Container', Container);
 
-    console.log(perm(["1", "3"]).join("\n"));
-    console.log(perm(["2-3", "4"]).join("\n"));
-    console.log(perm(["2", "3-4"]).join("\n"));
-    console.log(perm(["2-4", "3"]).join("\n"));
-    var set = SettingPermu(["2", "3", "4", "5"])
+      console.log(perm(["1", "3"]).join("\n"));
+    console.log(perm(["2","3", "4"]).join("\n"));
+    // console.log(perm(["2", "3-4"]).join("\n"));
+    // console.log(perm(["2-4", "3"]).join("\n"));
+    console.log(perm(["1", "2","3","4"]).join("\n"));
+    var set2 = SettingPermu(["2", "3","4"])
+    console.log(set2);
+    var set = SettingPermu(["1", "2", "3","4"])
     console.log(set);
 
     // คำนวนค่า Confident ...
+
+    
 };
 
 function SettingPermu(strArr) {
