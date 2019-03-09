@@ -60,11 +60,12 @@ function getValue() {
     Tohtml(FrequentItemSetFilter)
 
     console.log('Container', Container);
+
     const keyContainer = Object
-        .keys(Container[2])
+        .keys(Container[1])
         .join()
         .replace(/,/g, '');
-    console.log('Contanier.key', keyContainer);
+    console.log('Contanier.key', keyContainer[0]);
 
     const role = combinationsRole(keyContainer)
 
@@ -78,8 +79,10 @@ function getValue() {
 
 function FinsStrongRoles(Roles, MapOfFrequent) {
     //input    [ ["23", "24", "2"] , ["4", "3", "34"] ]
+console.log("Roles",Roles);
 
-    for (var index = 0; index < Roles.length; index++) {
+    
+    for (var index = 0; index <= Roles.length; index++) {
         var keyLeft = Roles[0][index]
             .split("")
             .join() // [2,3]
@@ -108,8 +111,6 @@ function FinsStrongRoles(Roles, MapOfFrequent) {
 }
 
 function FindKeyInArrayOnObject(MapOfFrequent, key) {
-    console.log('key', typeof key);
-
     var result = null
     for (let index = 0; index < MapOfFrequent.length; index++) {
         Object
@@ -117,11 +118,11 @@ function FindKeyInArrayOnObject(MapOfFrequent, key) {
             .forEach(function (keys) {
                 
                 if (key == keys ){
-                    console.log('condition 1');
+                    //console.log('condition 1');
                     result = MapOfFrequent[index][key]
                 }
                 else if (compareString(key, keys) && key.length > 2) {
-                    console.log('condition 2');
+                    //console.log('condition 2');
                     result = MapOfFrequent[index][keys]
                 }
             })
@@ -139,7 +140,7 @@ function compareString(key, keys) {
             count++
         }
     }
-    console.log('count',count);
+    //console.log('count',count);
     
     if (count >= 3)
         bool = true
