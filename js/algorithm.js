@@ -1,5 +1,7 @@
 function getValue() {
-    var ItemSetForm = document.getElementById("ItemSet").value;
+    var ItemSetForm = document
+        .getElementById("ItemSet")
+        .value;
 
     var ItemSetFormArr = ItemSetForm.split(",")
     //console.log('ItemSetFormArr', ItemSetFormArr);
@@ -8,19 +10,16 @@ function getValue() {
         itemSet[index] = ItemSetFormArr[index].split("-")
     }
 
-    var minSup = document.getElementById("minSup").value;
-    //console.log(minSup)
-    //   var itemSet = [
-    //       ["Apple", "Cereal", "Diapers"],
-    //       ["Beer", "Cereal", "Eggs"],
-    //       ["Apple", "Beer", "Cereal", "Eggs"],
-    //       ["Beer", "Eggs"]
-    //   ];
+    var minSup = document
+        .getElementById("minSup")
+        .value;
+    // console.log(minSup)   var itemSet = [       ["Apple", "Cereal", "Diapers"],
+    // ["Beer", "Cereal", "Eggs"],       ["Apple", "Beer", "Cereal", "Eggs"],
+    // ["Beer", "Eggs"]   ];
     console.log("itemSet", itemSet);
     itemSetArray1D = changeArrayTo1D(itemSet)
     var Objmode = findMode(itemSetArray1D)
-    //console.log(itemSetArray1D)
-    //console.log("mode", Objmode)
+    //console.log(itemSetArray1D) console.log("mode", Objmode)
     var ObjSup = findValueSupportObject(Objmode, itemSet.length, minSup)
     //console.log("valueSup", ObjSup);
     var valueFilterSup = filterWithMinSup(ObjSup, minSup)
@@ -30,8 +29,8 @@ function getValue() {
         .sort()
     var ArrayOfMapping = MappingValue(ArrayOfkeyNames)
 
-    //console.log("ArrayOfkeyNames", ArrayOfkeyNames);
-    //.log('MappingValue', MappingValue(ArrayOfkeyNames));
+    // console.log("ArrayOfkeyNames", ArrayOfkeyNames); .log('MappingValue',
+    // MappingValue(ArrayOfkeyNames));
     var Container = []
     for (var index = 0; index < 3; index++) {
         //console.log('=============Iteration ', index ,'================');
@@ -55,21 +54,115 @@ function getValue() {
         Container.push(mergValue)
 
     }
-    //console.log('', f);
+
     const FrequentItemSetFilter = chageObjKeyWhichNumberToName(Container, ArrayOfMapping)
     console.log("Frequent itemSet", FrequentItemSetFilter);
     Tohtml(FrequentItemSetFilter)
 
+    console.log('Container', Container);
+    const keyContainer = Object
+        .keys(Container[2])
+        .join()
+        .replace(/,/g, '');
+    console.log('Contanier.key', keyContainer);
+
+    const role = combinationsRole(keyContainer)
+
+    var RoleItemSet = FindRolesItemSet(role)
+    console.log(RoleItemSet);
+
+    FinsStrongRoles(RoleItemSet, Container)
+    // คำนวนค่า Confident ...
+
 };
 
+function FinsStrongRoles(Roles, MapOfFrequent) {
+    //input    [ ["23", "24", "2"] , ["4", "3", "34"] ]
 
+    for (var index = 0; index < Roles.length; index++) {
+        var keyLeft = Roles[0][index]
+            .split("")
+            .join() // [2,3]
+        var keyRight = Roles[1][index]
+            .split("")
+            .join() // [4]
+        keyLeft = keyLeft + "," + keyRight // [2]
+        keyRight = Roles[0][index]
+            .split("")
+            .join() // [2,3]  replace to   [4]
+        console.log('keyLeft', keyLeft);
+        console.log('keyRight', keyRight);
+
+        const supA = FindKeyInArrayOnObject(MapOfFrequent, keyLeft)
+        const supB = FindKeyInArrayOnObject(MapOfFrequent, keyRight)
+      
+        console.log('MapOfFrequentkeyLeft', supA);
+        console.log('MapOfFrequentkeyRight', supB);
+
+        const confident = (supA / supB).toFixed(2) * 100;
+        console.log('confident', confident);
+        console.log('=====================================');
+
+    }
+
+}
+
+function FindKeyInArrayOnObject(MapOfFrequent, key) {
+    console.log('key', typeof key);
+
+    var result = null
+    for (let index = 0; index < MapOfFrequent.length; index++) {
+        Object
+            .keys(MapOfFrequent[index])
+            .forEach(function (keys) {
+                
+                if (key == keys ){
+                    console.log('condition 1');
+                    result = MapOfFrequent[index][key]
+                }
+                else if (compareString(key, keys) && key.length > 2) {
+                    console.log('condition 2');
+                    result = MapOfFrequent[index][keys]
+                }
+            })
+    }
+    return result
+}
+
+function compareString(key, keys) {
+    var count = 0,
+        bool = false
+
+    for (let index = 0; index < key.length; index++) {
+        if (key.charAt(index) == keys.charAt(index)){
+            //console.log(key.charAt(index),'=',keys.charAt(index));
+            count++
+        }
+    }
+    console.log('count',count);
+    
+    if (count >= 3)
+        bool = true
+    return bool
+}
+
+function FindRolesItemSet(strArr) {
+    strArr.shift();
+    const halfOflength = Math.ceil(strArr.length / 2)
+    const leftSide = strArr.splice(0, halfOflength);
+    const rightSide = [...strArr].reverse()
+    const Bundle = [leftSide, rightSide]
+    // console.log('halOflength',halfOflength); console.log('leftSide',leftSide);
+    // console.log('rightSide',rightSide);
+    return Bundle
+}
 
 function Tohtml(ArrOfObj) {
 
-    var tableMock = "<table class='table table-bordered'>";
+    var tableMock = "<table class='nes-table is-bordered is-dark'>";
     tableMock += "<tr>";
-    tableMock += "<th scope='col'>Frequent itemSet</th>";
-    tableMock += "<th scope='col'>Support (%)</th>";
+    tableMock += "<th>Frequent itemSet</th>";
+    tableMock += "<th>Support (%)</th>";
     tableMock += "</tr>";
     for (var i = 0; i < ArrOfObj.length; i++) {
         Object
@@ -134,7 +227,6 @@ function filterWithMinSup(Objmode, minSup) {
     return Objmode;
 }
 
-
 function combination(str) {
     const result = [];
     for (let i = 1; i < Math.pow(2, str.length) - 1; i++)
@@ -170,7 +262,7 @@ function checkvalue(MappingValue, itemSet, Fstring) {
     for (var i = 0; i < Fstring.length; i++) {
         const element = Fstring[i].split(",")
         for (var m = 0; m < itemSet.length; m++) {
-            //console.log("=================start new Loop===========");
+
             var count = new Array(element.length).fill(null)
             for (var n = 0; n < itemSet[m].length; n++) {
                 for (var j = 0; j < element.length; j++) {
@@ -253,4 +345,36 @@ function swap(json) {
         ret[json[key]] = key;
     }
     return ret;
+}
+
+function perm(xs) {
+    let ret = [];
+
+    for (let i = 0; i < xs.length; i = i + 1) {
+        let rest = perm(xs.slice(0, i).concat(xs.slice(i + 1)));
+
+        if (!rest.length) {
+            ret.push([xs[i]])
+        } else {
+            for (let j = 0; j < rest.length; j = j + 1) {
+                ret.push([xs[i]].concat(rest[j]))
+            }
+        }
+    }
+    return ret;
+}
+
+function combinationsRole(str) {
+    var fn = function (active, rest, a) {
+        if (!active && !rest)
+            return;
+        if (!rest) {
+            a.push(active);
+        } else {
+            fn(active + rest[0], rest.slice(1), a);
+            fn(active, rest.slice(1), a);
+        }
+        return a;
+    }
+    return fn("", str, []);
 }

@@ -1,99 +1,171 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Algorithm
-    </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-        crossorigin="anonymous" />
-    <link rel="stylesheet" href="css/customize.css">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta name="description" content="NES.css is a NES-style CSS Framework." />
+  <meta name="keywords" content="html5,css,framework,sass,NES,8bit" />
+  <meta name="author" content="© 2018 B.C.Rikko" />
+  <meta name="theme-color" content="#212529" />
+  <link rel="shortcut icon" type="image/png" href="favicon.png">
+  <link rel="shortcut icon" sizes="196x196" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
+
+  <title>NES.css - NES-style CSS Framework</title>
+
+  <link href="https://unpkg.com/nes.css@latest/css/nes.min.css" rel="stylesheet" />
+  <link href="./style.css" rel="stylesheet" />
+  <script src="./lib/vue.min.js"></script>
+
+  <script src="./lib/dialog-polyfill.js"></script>
+  <script src="./lib/highlight.js"></script>
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="NES.css" />
+  <meta property="og:url" content="https://nostalgic-css.github.io/NES.css/" />
+  <meta property="og:description" content="NES-style CSS Framework | ファミコン風CSSフレームワーク" />
+  <meta property="og:image" content="https://user-images.githubusercontent.com/5305599/49061716-da649680-f254-11e8-9a89-d95a7407ec6a.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@bc_rikko" />
+  <meta name="twitter:creator" content="@bc_rikko" />
+  <meta name="twitter:image" content="https://user-images.githubusercontent.com/5305599/49061716-da649680-f254-11e8-9a89-d95a7407ec6a.png" />
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-41640153-4"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js", new Date());gtag("config", "UA-41640153-4");</script>
+  <script>
+    if (window.navigator.userAgent.toLocaleLowerCase().indexOf('trident') !== -1) {
+        window.alert('IE is not supported on this page.')
+      }
+
+    </script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+
+  The integrity and crossorigin attributes are
 </head>
-<link href="https://fonts.googleapis.com/css?family=Itim|Patrick+Hand" rel="stylesheet">
 
 <body>
-    <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample10"
-            aria-controls="navbarsExample10" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+  <div id="nescss">
+    <header :class="{ sticky: scrollPos > 50 }">
+      <div class="container">
+        <div class="nav-brand">
+          <a href="https://nostalgic-css.github.io/NES.css/">
+            <h1><i class="snes-jp-logo brand-logo"></i> Apori Algorithm</h1>
+          </a>
+          <p>used Javascript only</p>
+        </div>
 
-        <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample10">
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">midter
-                        <span class="sr-only">(current)</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Disabled</a>
-                </li>
-             
-            </ul>
+        <div class="social-buttons">
+          <p>Share on SNS</p>
+          <div class="share">
+       
+            <a @click="share('facebook')"><i class="nes-icon facebook"></i></a>
+        
+          </div>
         </div>
-    </nav> -->
-    <main role="main">
+      </div>
+    </header>
 
-        <!-- Main jumbotron for a primary marketing message or call to action -->
-        <div class="jumbotron">
-            <div class="container">
-                <h1 class="display-6">Apriori Algorithm</h1>
-                <p></p>
+    <div class="container">
+      <main class="main-content">
+        <a class="github-link" :class="{ active:  scrollPos < 200 }" href="https://github.com/NantipatSoftEn/LabDatamining"
+          target="_blank" rel="noopener" @mouseover="startAnimate" @mouseout="stopAnimate">
+          <p class="nes-balloon from-right">Fork me<br />on GitHub</p>
+          <i class="nes-octocat" :class="animateOctocat ? 'animate' : ''"></i>
+        </a>
+
+        <!-- About -->
+        <section class="topic">
+          <h2 id="about"><a href="#about">#</a>About</h2>
+          <p>Ap.</p>
+        </section>
+
+
+        <!-- Installation -->
+        <!-- <section class="topic">
+            <h2 id="installation"><a href="#installation">#</a>Installation</h2>
+            <p>NES.css is available via either npm or Yarn, or a CDN.</p>
+            <p>Please read <a href="https://github.com/nostalgic-css/NES.css" target="_blank" rel="noopener">README.md</a>.</p>
+          </section> -->
+
+
+        <!-- Usage -->
+        <section class="topic">
+          <h2 id="usage"><a href="#usage">#</a>Usage</h2>
+          <p>NES.css only provides components. You will need to define your own layout.</p>
+        </section>
+
+
+
+        <section class="nes-container with-title">
+          <h3 class="title">Input Data</h3>
+          <div id="texts" class="item">
+            <label for="textarea_field">ItemSet</label>
+            <textarea id="ItemSet" class="nes-textarea">Apple-Cereal-Diapers,Beer-Cereal-Eggs,Apple-Beer-Cereal-Eggs,Beer-Eggs</textarea>
+
+            <div class="nes-field is-inline">
+              <label for="inline_field"> minSupport</label>
+              <input type="text" id="minSup" class="nes-input is-success" placeholder="Number only" value="50"> 
             </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="form-group ">
-                        <label for="">ItemSet</label>
-                        <textarea class="form-control" rows="5" id="ItemSet">
-Apple-Cereal-Diapers,Beer-Cereal-Eggs,Apple-Beer-Cereal-Eggs,Beer-Eggs</textarea>
-                    </div>
-                </div>
-                <div class="col-sm-2">
-                    <div class="form-group ">
-                        <label for="">minSup</label>
-                        <input type="text" class="form-control" id="minSup" placeholder="Number only" value="50" />
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-2">
-                                <button type="button" class="btn btn-primary btn-lg btn3d" onclick="getValue();">Click It</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-2">
-                    <div class="form-group ">
-                        <label for="">minCon</label>
-                        <input type="text" class="form-control" id="minCon" placeholder="Number only" />
-                    </div>
-                </div>
-                <div class="col-sm-2">
-                    <div class="form-group ">
-                        <label for="">Transection</label>
-                        <input type="text" class="form-control" id="Transection" placeholder="Number only" readonly />
-                    </div>
-                </div>
+
+            <div class="nes-field is-inline">
+              <label for="warning_field">conSupport</label>
+              <input type="text" id="warning_field" class="nes-input is-warning" placeholder="Number only">
             </div>
-            
-            <div class="row">
-                <div class="col-sm-6">
-                    <div id="result"></div>
-                </div>
+
+            <a class="nes-btn is-primary" onclick="getValue();">Click It</a>
+          </div>
+
+        </section>
+
+        <section class="nes-container with-title">
+          <h3 class="title">Frq ItemSet</h3>
+          <div id="texts" class="item">
+            <div class="nes-table-responsive">
+              <div id="result"></div>
             </div>
-        </div>
+
+          </div>
+
+        </section>
+
+
+
+
+
+      </main>
+
+      <!-- <footer>
+        <p>
+          <span>&copy;2018</span>
+          <a href="https://kuroeveryday.blogspot.com/" target="_blank" rel="noopener">Black Everyday Company</a>
+          <span>-</span>
+          <a href="https://twitter.com/bc_rikko" target="_blank" rel="noopener">@bc_rikko</a>
+        </p>
+      </footer> -->
+
+      <!-- Copied balloon -->
+      <div class="nes-balloon from-right copied-balloon" :style="copiedBalloon">
+        <p>copied!!</p>
+      </div>
+
+      <!-- FAB Button -->
+      <button type="button" class="nes-btn is-error scroll-btn" :class="{ active: scrollPos > 500 }" @click="window.scrollTo({ top:0, behavior: 'smooth' })"><span>&lt;</span></button>
+    </div>
+  </div>
 </body>
-<script type="text/javascript" src="js/algorithm.js"></script>
-<script></script>
+<script src="./script.js"></script>
+<script src="js/algorithm.js"></script>
+<script>
+  const h = document.querySelector('head');
+  ['./lib/dialog-polyfill.css', './lib/highlight-theme.css'].forEach(a => {
+    const l = document.createElement('link');
+    l.href = a;
+    l.rel = 'stylesheet';
+    h.appendChild(l);
+  })
+</script>
 
 </html>
