@@ -60,30 +60,46 @@ function getValue() {
     Tohtml(FrequentItemSetFilter)
 
     console.log('Container', Container);
-    const keyContainer = Object.keys(Container[2])
+    const keyContainer = Object
+        .keys(Container[2])
+        .join()
+        .replace(/,/g, '');
     console.log('Contanier.key', keyContainer);
-    const splitKeyContainer = keyContainer[0].split(",");
 
+    const role = combinationsRole(keyContainer)
 
- 
-   const role = combinationsRole("234")
-
-    
-    var RoleItemSet = FindRoleItemSet(role)
+    var RoleItemSet = FindRolesItemSet(role)
     console.log(RoleItemSet);
 
+    FinsStrongRoles(RoleItemSet, Container)
     // คำนวนค่า Confident ...
 
 };
 
-function FindRoleItemSet(strArr) {
+function FinsStrongRoles(Roles, MapOfFrequent) {
+    const keyLeft = Roles[0][0].split("").join()
+    const keyRight = Roles[1][0]
+    console.log('roles', keyLeft);
+    const supA = MapOfFrequent[1][keyLeft]
+    const supB = MapOfFrequent[0][keyRight]
+    MapOfFrequent[1][keyLeft]
+    console.log('MapOfFrequentkeyLeft',supA);
+    console.log('MapOfFrequentkeyRight',  supB);
+
+    for (var i = 0; i < Roles.length; i++) {
+        //for (var j = 0; j < Roles[i].length; j++) {}
+
+
+    }
+}
+
+function FindRolesItemSet(strArr) {
     strArr.shift();
-    var halfOflength  =  Math.ceil(strArr.length/2)
-    const leftSide = strArr.splice(0,halfOflength); 
-    const rightSide =  [...strArr].reverse()
-    const  Bundle  =  [leftSide,rightSide]
-    // console.log('halOflength',halfOflength);
-    // console.log('leftSide',leftSide);
+    const halfOflength = Math.ceil(strArr.length / 2)
+    const leftSide = strArr.splice(0, halfOflength);
+    const rightSide = [...strArr].reverse()
+    const Bundle = [leftSide, rightSide]
+    // console.log('halOflength',halfOflength); console.log('leftSide',leftSide);
     // console.log('rightSide',rightSide);
     return Bundle
 }
@@ -294,7 +310,6 @@ function perm(xs) {
     }
     return ret;
 }
-
 
 function combinationsRole(str) {
     var fn = function (active, rest, a) {
