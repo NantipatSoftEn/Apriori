@@ -64,7 +64,7 @@ function getValue() {
     console.log('Contanier.key',keyContainer);
     const  splitKeyContainer = keyContainer[0].split(",");
     console.log('splitKeyContainer',splitKeyContainer);
-    const  permuKey = perm(["1", "2","3"]).join("\n")
+    const  permuKey = perm(["1", "2","3"])
     console.log("permutaiob",permuKey);
     console.log('Ddfdf',FindRoleItemSet(permuKey[0]));
     
