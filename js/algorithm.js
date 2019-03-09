@@ -58,43 +58,34 @@ function getValue() {
     const FrequentItemSetFilter = chageObjKeyWhichNumberToName(Container, ArrayOfMapping)
     console.log("Frequent itemSet", FrequentItemSetFilter);
     Tohtml(FrequentItemSetFilter)
-    
+
     console.log('Container', Container);
     const keyContainer = Object.keys(Container[2])
-    console.log('Contanier.key',keyContainer);
-    const  splitKeyContainer = keyContainer[0].split(",");
-    console.log('splitKeyContainer',splitKeyContainer);
-    const  permuKey = perm(["1", "2","3"])
-    console.log("permutaiob",permuKey);
-    console.log('Ddfdf',FindRoleItemSet(permuKey[0]));
+    console.log('Contanier.key', keyContainer);
+    const splitKeyContainer = keyContainer[0].split(",");
+
+
+ 
+   const role = combinationsRole("234")
+
     
-    // console.log(perm(["1", "3"]).join("\n"));
-    // console.log(perm(["2", "3", "4"]).join("\n"));
-    // console.log(perm(["2", "3-4"]).join("\n")); console.log(perm(["2-4",
-    // "3"]).join("\n"));
-    console.log(perm(["1", "2", "3", "4"]).join("\n"));
-    // var set2 = SettingPermu(["2", "3","4"]) console.log(set2);
-    var set = FindRoleItemSet(["3", "2", "4", "1"])
-    console.log(set);
+    var RoleItemSet = FindRoleItemSet(role)
+    console.log(RoleItemSet);
 
     // คำนวนค่า Confident ...
 
 };
 
 function FindRoleItemSet(strArr) {
-    const Contanner = [],
-        objRole = {},
-        left = [],
-        right = [...strArr]
-
-    while (strArr.length > 1) {
-        let move = strArr.shift();
-        right.shift();
-        left.push(move)
-        objRole[left] = [...right]
-    }
-    //console.log('obj', obj);
-    return objRole
+    strArr.shift();
+    var halfOflength  =  Math.ceil(strArr.length/2)
+    const leftSide = strArr.splice(0,halfOflength); 
+    const rightSide =  [...strArr].reverse()
+    const  Bundle  =  [leftSide,rightSide]
+    // console.log('halOflength',halfOflength);
+    // console.log('leftSide',leftSide);
+    // console.log('rightSide',rightSide);
+    return Bundle
 }
 
 function Tohtml(ArrOfObj) {
@@ -122,8 +113,8 @@ function Tohtml(ArrOfObj) {
 
 function findMode(store) {
     distribution = {},
-    max = 0,
-    result = [];
+        max = 0,
+        result = [];
     store.forEach(function (a) {
         distribution[a] = (distribution[a] || 0) + 1;
         if (distribution[a] > max) {
@@ -169,7 +160,7 @@ function filterWithMinSup(Objmode, minSup) {
 
 function combination(str) {
     const result = [];
-    for (let i = 1; i < Math.pow(2, str.length) - 1; i++) 
+    for (let i = 1; i < Math.pow(2, str.length) - 1; i++)
         result.push([...str].filter((_, pos) => (i >> pos) & 1).join(","));
     return result;
 }
@@ -242,13 +233,13 @@ function SelectIndexOfArrSupOnMinSup(Fstring, ArrSup, minSup) {
 function merg(filter2D, InsentValue) {
     var objMerg = {}
     for (var i = 0; i < InsentValue.length; i++) {
-        if (InsentValue[i] != null) 
+        if (InsentValue[i] != null)
             objMerg[InsentValue[i]] = filter2D[i]
     }
     return objMerg
 }
 
-function chageObjKeyWhichNumberToName(fArr, MappingValue,) {
+function chageObjKeyWhichNumberToName(fArr, MappingValue, ) {
     var result = []
     for (let index = 0; index < fArr.length; index++) {
         var newObj = {}
@@ -302,4 +293,20 @@ function perm(xs) {
         }
     }
     return ret;
+}
+
+
+function combinationsRole(str) {
+    var fn = function (active, rest, a) {
+        if (!active && !rest)
+            return;
+        if (!rest) {
+            a.push(active);
+        } else {
+            fn(active + rest[0], rest.slice(1), a);
+            fn(active, rest.slice(1), a);
+        }
+        return a;
+    }
+    return fn("", str, []);
 }
