@@ -77,20 +77,66 @@ function getValue() {
 };
 
 function FinsStrongRoles(Roles, MapOfFrequent) {
-    const keyLeft = Roles[0][0].split("").join()
-    const keyRight = Roles[1][0]
-    console.log('roles', keyLeft);
-    const supA = MapOfFrequent[1][keyLeft]
-    const supB = MapOfFrequent[0][keyRight]
-    MapOfFrequent[1][keyLeft]
-    console.log('MapOfFrequentkeyLeft',supA);
-    console.log('MapOfFrequentkeyRight',  supB);
+    //input    [ ["23", "24", "2"] , ["4", "3", "34"] ]
 
-    for (var i = 0; i < Roles.length; i++) {
-        //for (var j = 0; j < Roles[i].length; j++) {}
+    for (var index = 0; index < Roles.length; index++) {
+        var keyLeft = Roles[0][index]
+            .split("")
+            .join() // [2,3]
+        var keyRight = Roles[1][index]
+            .split("")
+            .join() // [4]
+        keyLeft = keyLeft + "," + keyRight // [2]
+        keyRight = Roles[0][0]
+            .split("")
+            .join() // [2,3]  replace to   [4]
+        console.log('keyLeft', keyLeft);
+        console.log('keyRight', keyRight);
 
+        const supA = FindKeyInArrayOnObject(MapOfFrequent, keyLeft)
+        const supB = FindKeyInArrayOnObject(MapOfFrequent, keyRight)
+        FindKeyInArrayOnObject
+        console.log('MapOfFrequentkeyLeft', supA);
+        console.log('MapOfFrequentkeyRight', supB);
+
+        const confident = (supA / supB).toFixed(2) * 100;
+        console.log('confident', confident);
+        console.log('=====================================');
 
     }
+
+}
+
+function FindKeyInArrayOnObject(MapOfFrequent, key) {
+    console.log('key', typeof key);
+
+    var result = null
+    for (let index = 0; index < MapOfFrequent.length; index++) {
+        Object
+            .keys(MapOfFrequent[index])
+            .forEach(function (keys) {
+
+                if (key == keys || compareString(key, keys))
+                    result = MapOfFrequent[index][keys]
+
+            })
+    }
+    return result
+}
+
+function compareString(key, keys) {
+    var count = 0,
+        bool = false
+
+    for (let index = 0; index < key.length; index++) {
+        if (key.charAt(index) == keys.charAt(index))
+            count++
+    }
+    if (key.length <= 2)
+        bool = true
+    if (count >= 2)
+        bool = true
+    return bool
 }
 
 function FindRolesItemSet(strArr) {
