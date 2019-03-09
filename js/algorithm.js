@@ -58,23 +58,30 @@ function getValue() {
     const FrequentItemSetFilter = chageObjKeyWhichNumberToName(Container, ArrayOfMapping)
     console.log("Frequent itemSet", FrequentItemSetFilter);
     Tohtml(FrequentItemSetFilter)
-
+    
     console.log('Container', Container);
-
-    console.log(perm(["1", "3"]).join("\n"));
-    console.log(perm(["2", "3", "4"]).join("\n"));
+    const keyContainer = Object.keys(Container[2])
+    console.log('Contanier.key',keyContainer);
+    const  splitKeyContainer = keyContainer[0].split(",");
+    console.log('splitKeyContainer',splitKeyContainer);
+    const  permuKey = perm(["1", "2","3"]).join("\n")
+    console.log("permutaiob",permuKey);
+    console.log('Ddfdf',FindRoleItemSet(permuKey[0]));
+    
+    // console.log(perm(["1", "3"]).join("\n"));
+    // console.log(perm(["2", "3", "4"]).join("\n"));
     // console.log(perm(["2", "3-4"]).join("\n")); console.log(perm(["2-4",
     // "3"]).join("\n"));
     console.log(perm(["1", "2", "3", "4"]).join("\n"));
     // var set2 = SettingPermu(["2", "3","4"]) console.log(set2);
-    var set = SettingPermu(["3", "2", "4", "1"])
+    var set = FindRoleItemSet(["3", "2", "4", "1"])
     console.log(set);
 
     // คำนวนค่า Confident ...
 
 };
 
-function SettingPermu(strArr) {
+function FindRoleItemSet(strArr) {
     const Contanner = [],
         objRole = {},
         left = [],
@@ -86,9 +93,8 @@ function SettingPermu(strArr) {
         left.push(move)
         objRole[left] = [...right]
     }
-
     //console.log('obj', obj);
-    return  objRole
+    return objRole
 }
 
 function Tohtml(ArrOfObj) {
