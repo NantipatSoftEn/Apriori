@@ -31,12 +31,15 @@ Banana =>Watermelon        (2/5)/(3/5  ) 60
 Watermelon =>Pineapple     (4/5)/(4/5)   100
 
 
+1,2 3
 Orange,Banana => Pineapple 
 Pineapple => Orange,Banana
-Orange,Pineapple =>Banana
-Banana => Orange,Pineapple
+2,3 1
 Banana ,Pineapple  => Orange
 Orange => Banana ,Pineapple 
+1 ,3 2
+Orange,Pineapple =>Banana
+Banana => Orange,Pineapple
 
 Orange,Banana => Watermelon
 Watermelon  =>  Orange,Banana 
