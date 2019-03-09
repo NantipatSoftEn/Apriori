@@ -61,28 +61,35 @@ function getValue() {
 
     console.log('Container', Container);
 
-    const keyContainer = Object
+    Object
         .keys(Container[1])
-        .join()
-        .replace(/,/g, '');
-    console.log('Contanier.key', keyContainer[0]);
+        .forEach(function (keys) {
+            console.log('Contanier.key', keys.replace(/,/g, ''));
+            const role = combinationsRole(keys.replace(/,/g, ''))
+            console.log('role',role);
+            
+            var RoleItemSet = FindRolesItemSet(role)
+            console.log(RoleItemSet);
 
-    const role = combinationsRole(keyContainer)
+            FinsStrongRoles(RoleItemSet, Container)
+        })
 
-    var RoleItemSet = FindRolesItemSet(role)
-    console.log(RoleItemSet);
+    //.replace(/,/g, '');
+    //  ทำยังไงให้เก็ท key มาทีละ array 
 
-    FinsStrongRoles(RoleItemSet, Container)
+
+
+
     // คำนวนค่า Confident ...
 
 };
 
 function FinsStrongRoles(Roles, MapOfFrequent) {
     //input    [ ["23", "24", "2"] , ["4", "3", "34"] ]
-console.log("Roles",Roles);
-
-    
-    for (var index = 0; index <= Roles.length; index++) {
+    for (var index = 0; index < Roles[0].length; index++) {
+        if ( Roles.length<= 2 ) {
+            
+        }
         var keyLeft = Roles[0][index]
             .split("")
             .join() // [2,3]
@@ -98,7 +105,7 @@ console.log("Roles",Roles);
 
         const supA = FindKeyInArrayOnObject(MapOfFrequent, keyLeft)
         const supB = FindKeyInArrayOnObject(MapOfFrequent, keyRight)
-      
+
         console.log('MapOfFrequentkeyLeft', supA);
         console.log('MapOfFrequentkeyRight', supB);
 
@@ -116,12 +123,11 @@ function FindKeyInArrayOnObject(MapOfFrequent, key) {
         Object
             .keys(MapOfFrequent[index])
             .forEach(function (keys) {
-                
-                if (key == keys ){
+
+                if (key == keys) {
                     //console.log('condition 1');
                     result = MapOfFrequent[index][key]
-                }
-                else if (compareString(key, keys) && key.length > 2) {
+                } else if (compareString(key, keys) && key.length > 2) {
                     //console.log('condition 2');
                     result = MapOfFrequent[index][keys]
                 }
@@ -135,13 +141,13 @@ function compareString(key, keys) {
         bool = false
 
     for (let index = 0; index < key.length; index++) {
-        if (key.charAt(index) == keys.charAt(index)){
+        if (key.charAt(index) == keys.charAt(index)) {
             //console.log(key.charAt(index),'=',keys.charAt(index));
             count++
         }
     }
     //console.log('count',count);
-    
+
     if (count >= 3)
         bool = true
     return bool
