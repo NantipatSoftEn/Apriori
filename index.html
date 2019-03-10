@@ -51,10 +51,10 @@
     <header :class="{ sticky: scrollPos > 50 }">
       <div class="container">
         <div class="nav-brand">
-          <a href="https://nostalgic-css.github.io/NES.css/">
-            <h1><i class="snes-jp-logo brand-logo"></i> Apori Algorithm</h1>
+          <a href="">
+            <h1><i class="snes-jp-logo brand-logo"></i> Apriori  Algorithm</h1>
           </a>
-          <p>used Javascript only</p>
+          <p>Javascript only</p>
         </div>
 
         <div class="social-buttons">
@@ -70,7 +70,7 @@
 
     <div class="container">
       <main class="main-content">
-        <a class="github-link" :class="{ active:  scrollPos < 200 }" href="https://github.com/NantipatSoftEn/LabDatamining"
+        <a class="github-link" :class="{ active:  scrollPos < 200 }" 
           target="_blank" rel="noopener" @mouseover="startAnimate" @mouseout="stopAnimate">
           <p class="nes-balloon from-right">Fork me<br />on GitHub</p>
           <i class="nes-octocat" :class="animateOctocat ? 'animate' : ''"></i>
@@ -79,7 +79,7 @@
         <!-- About -->
         <section class="topic">
           <h2 id="about"><a href="#about">#</a>About</h2>
-          <p>Ap.</p>
+          <p>This is  algorithm in data mining for find  frequent itemset.</p>
         </section>
 
 
@@ -94,8 +94,13 @@
         <!-- Usage -->
         <section class="topic">
           <h2 id="usage"><a href="#usage">#</a>Usage</h2>
-          <p>NES.css only provides components. You will need to define your own layout.</p>
+          <p></p>
         </section>
+
+        <div class="nes-container with-title ">
+          <p class="title">Test Case</p>
+          <p>I1-I2-I5,I2-I4,I2-I3,I1-I2-I4,I1-I3,I2-I3,I1-I3,I1-I2-I3-I5,I1-I2-I3</p>
+        </div>
 
 
 
@@ -124,11 +129,18 @@
           <h3 class="title">Frq ItemSet</h3>
           <div id="texts" class="item">
             <div class="nes-table-responsive">
-              <div id="result"></div>
+              <div id="result1"></div>
             </div>
-
           </div>
+        </section>
 
+        <section class="nes-container with-title">
+          <h3 class="title">Strong Association Rule </h3>
+          <div id="texts" class="item">
+            <div class="nes-table-responsive">
+              <div id="result2"></div>
+            </div>
+          </div>
         </section>
 
 
