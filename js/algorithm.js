@@ -13,6 +13,10 @@ function getValue() {
     var minSup = document
         .getElementById("minSup")
         .value;
+
+    var minCon = document
+        .getElementById("minCon")
+        .value;
     // console.log(minSup)   var itemSet = [       ["Apple", "Cereal", "Diapers"],
     // ["Beer", "Cereal", "Eggs"],       ["Apple", "Beer", "Cereal", "Eggs"],
     // ["Beer", "Eggs"]   ];
@@ -29,10 +33,10 @@ function getValue() {
         .sort()
     var ArrayOfMapping = MappingValue(ArrayOfkeyNames)
 
-    // console.log("ArrayOfkeyNames", ArrayOfkeyNames); .log('MappingValue',
+    console.log("ArrayOfkeyNames", ArrayOfkeyNames);
     // MappingValue(ArrayOfkeyNames));
     var Container = []
-    for (var index = 0; index < 3; index++) {
+    for (var index = 0; index < ArrayOfkeyNames.length; index++) {
         //console.log('=============Iteration ', index ,'================');
 
         var ArrayOfIndex = ChangeKeyToIndex(ArrayOfkeyNames);
@@ -57,15 +61,15 @@ function getValue() {
 
     const FrequentItemSetFilter = chageObjKeyWhichNumberToName(Container, ArrayOfMapping)
     console.log("Frequent itemSet", FrequentItemSetFilter);
-    Tohtml(FrequentItemSetFilter)
+    TohtmlFraItemSet(FrequentItemSetFilter)
 
     console.log('Container', Container);
 
     //console.log('ww', getStrongRoles(Container));
 
-    const StrongRoles = chageObjKeyToNameRole(getStrongRoles(Container), ArrayOfMapping)
+    const StrongRoles = chageObjKeyToNameRole(getStrongRoles(Container,minCon), ArrayOfMapping)
     console.log('StrongRoles', StrongRoles);
-    Tohtml(StrongRoles)
+    TohtmlStrogRule(StrongRoles)
 
 };
 
@@ -109,7 +113,7 @@ function chageObjKeyToNameRole(ObjRole, MappingValue) {
     return result
 }
 
-function getStrongRoles(Container) {
+function getStrongRoles(Container,minCon) {
     var result = []
     for (let index = 1; index < Container.length; index++) {
         Object
@@ -120,9 +124,9 @@ function getStrongRoles(Container) {
                 //console.log('role', role);
                 const RoleItemSet = FindRolesItemSet(role)
                 //console.log(RoleItemSet);
-                var A = FinsStrongRoles(RoleItemSet, Container);
+                var A = FinsStrongRoles(RoleItemSet, Container,minCon);
                 var RoleItemSet2 = [...RoleItemSet]
-                var B = FinsStrongRoles(RoleItemSet2.reverse(), Container);
+                var B = FinsStrongRoles(RoleItemSet2.reverse(), Container,minCon);
                 result.push(A)
                 result.push(B)
             })
@@ -130,7 +134,7 @@ function getStrongRoles(Container) {
     return result
 }
 
-function FinsStrongRoles(Roles, MapOfFrequent) {
+function FinsStrongRoles(Roles, MapOfFrequent, minCon) {
     //input    [ ["23", "24", "2"] , ["4", "3", "34"] ]
     var newObj = {}
     for (var index = 0; index < Roles[0].length; index++) {
@@ -155,7 +159,8 @@ function FinsStrongRoles(Roles, MapOfFrequent) {
         //console.log('arrow', arrow);
         const confident = (supA / supB).toFixed(2) * 100;
         //console.log('confident', confident);
-        newObj[arrow] = confident
+        if (confident >= minCon)
+            newObj[arrow] = confident
         //console.log('=====================================');
     }
     return newObj
@@ -214,7 +219,7 @@ function FindRolesItemSet(strArr) {
     return Bundle
 }
 
-function Tohtml(ArrOfObj) {
+function TohtmlFraItemSet(ArrOfObj) {
 
     var tableMock = "<table class='nes-table is-bordered is-dark'>";
     tableMock += "<tr>";
@@ -222,7 +227,7 @@ function Tohtml(ArrOfObj) {
     tableMock += "<th>Frequent itemSet</th>";
     tableMock += "<th>Support (%)</th>";
     tableMock += "</tr>";
-    for (var i = 0,j = 1; i < ArrOfObj.length; i++) {
+    for (var i = 0, j = 1; i < ArrOfObj.length; i++) {
         Object
             .keys(ArrOfObj[i])
             .forEach(function (key) {
@@ -230,14 +235,40 @@ function Tohtml(ArrOfObj) {
                 //console.log('i=', i, " ", ArrOfObj[i][key], " ", key);
                 tableMock += "<td>" + j + "</td>";
                 tableMock += "<td>" + key + "</td>";
-                tableMock += "<td>" + ArrOfObj[i][key] + "</td>";
+                tableMock += "<td>" + ArrOfObj[i][key].toFixed(2) + "</td>";
                 tableMock += "</tr>";
                 j++
             })
 
     }
     tableMock += "</table>"
-    $("#result").html(tableMock);
+    $("#result1").html(tableMock);
+}
+
+function TohtmlStrogRule(ArrOfObj) {
+
+    var tableMock = "<table class='nes-table is-bordered is-dark'>";
+    tableMock += "<tr>";
+    tableMock += "<th>No.</th>";
+    tableMock += "<th>Frequent itemSet</th>";
+    tableMock += "<th>Support (%)</th>";
+    tableMock += "</tr>";
+    for (var i = 0, j = 1; i < ArrOfObj.length; i++) {
+        Object
+            .keys(ArrOfObj[i])
+            .forEach(function (key) {
+                tableMock += "<tr>";
+                //console.log('i=', i, " ", ArrOfObj[i][key], " ", key);
+                tableMock += "<td>" + j + "</td>";
+                tableMock += "<td>" + key + "</td>";
+                tableMock += "<td>" + ArrOfObj[i][key].toFixed(2) + "</td>";
+                tableMock += "</tr>";
+                j++
+            })
+
+    }
+    tableMock += "</table>"
+    $("#result2").html(tableMock);
 }
 
 function findMode(store) {
