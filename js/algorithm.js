@@ -68,10 +68,13 @@ function getValue() {
             const role = combinationsRole(keys.replace(/,/g, ''))
             console.log('role',role);
             
-            var RoleItemSet = FindRolesItemSet(role)
+            const  RoleItemSet = FindRolesItemSet(role)
             console.log(RoleItemSet);
-
-            FinsStrongRoles(RoleItemSet, Container)
+            //FinsStrongRoles(RoleItemSet,Container);
+            var  RoleItemSet2 = [...RoleItemSet]
+     
+            FinsStrongRoles(RoleItemSet2.reverse(),Container);
+            
         })
 
     //.replace(/,/g, '');
@@ -87,9 +90,7 @@ function getValue() {
 function FinsStrongRoles(Roles, MapOfFrequent) {
     //input    [ ["23", "24", "2"] , ["4", "3", "34"] ]
     for (var index = 0; index < Roles[0].length; index++) {
-        if ( Roles.length<= 2 ) {
-            
-        }
+     
         var keyLeft = Roles[0][index]
             .split("")
             .join() // [2,3]
@@ -123,12 +124,11 @@ function FindKeyInArrayOnObject(MapOfFrequent, key) {
         Object
             .keys(MapOfFrequent[index])
             .forEach(function (keys) {
-
                 if (key == keys) {
-                    //console.log('condition 1');
+                    console.log('condition 1');
                     result = MapOfFrequent[index][key]
                 } else if (compareString(key, keys) && key.length > 2) {
-                    //console.log('condition 2');
+                    console.log('condition 2');
                     result = MapOfFrequent[index][keys]
                 }
             })
