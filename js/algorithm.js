@@ -29,10 +29,10 @@ function getValue() {
         .sort()
     var ArrayOfMapping = MappingValue(ArrayOfkeyNames)
 
-    // console.log("ArrayOfkeyNames", ArrayOfkeyNames); .log('MappingValue',
+    console.log("ArrayOfkeyNames", ArrayOfkeyNames);
     // MappingValue(ArrayOfkeyNames));
     var Container = []
-    for (var index = 0; index < 3; index++) {
+    for (var index = 0; index < ArrayOfkeyNames.length; index++) {
         //console.log('=============Iteration ', index ,'================');
 
         var ArrayOfIndex = ChangeKeyToIndex(ArrayOfkeyNames);
@@ -65,7 +65,7 @@ function getValue() {
 
     const StrongRoles = chageObjKeyToNameRole(getStrongRoles(Container), ArrayOfMapping)
     console.log('StrongRoles', StrongRoles);
-    Tohtml(StrongRoles)
+    //Tohtml(StrongRoles)
 
 };
 
