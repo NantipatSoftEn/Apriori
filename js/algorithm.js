@@ -62,19 +62,19 @@ function getValue() {
     console.log('Container', Container);
 
     Object
-        .keys(Container[1])
+        .keys(Container[2])
         .forEach(function (keys) {
             console.log('Contanier.key', keys.replace(/,/g, ''));
             const role = combinationsRole(keys.replace(/,/g, ''))
-            console.log('role',role);
-            
-            const  RoleItemSet = FindRolesItemSet(role)
+            console.log('role', role);
+
+            const RoleItemSet = FindRolesItemSet(role)
             console.log(RoleItemSet);
-            //FinsStrongRoles(RoleItemSet,Container);
-            var  RoleItemSet2 = [...RoleItemSet]
-     
-            FinsStrongRoles(RoleItemSet2.reverse(),Container);
-            
+            FinsStrongRoles(RoleItemSet,Container);
+            var RoleItemSet2 = [...RoleItemSet]
+
+            //FinsStrongRoles(RoleItemSet2.reverse(), Container);
+
         })
 
     //.replace(/,/g, '');
@@ -90,7 +90,7 @@ function getValue() {
 function FinsStrongRoles(Roles, MapOfFrequent) {
     //input    [ ["23", "24", "2"] , ["4", "3", "34"] ]
     for (var index = 0; index < Roles[0].length; index++) {
-     
+
         var keyLeft = Roles[0][index]
             .split("")
             .join() // [2,3]
@@ -120,12 +120,15 @@ function FinsStrongRoles(Roles, MapOfFrequent) {
 
 function FindKeyInArrayOnObject(MapOfFrequent, key) {
     var result = null
+    console.log('key ',key);
+    
     for (let index = 0; index < MapOfFrequent.length; index++) {
         Object
             .keys(MapOfFrequent[index])
             .forEach(function (keys) {
                 if (key == keys) {
-                    console.log('condition 1');
+                    console.log(key,'=',keys);
+                    
                     result = MapOfFrequent[index][key]
                 } else if (compareString(key, keys) && key.length > 2) {
                     console.log('condition 2');
@@ -139,16 +142,24 @@ function FindKeyInArrayOnObject(MapOfFrequent, key) {
 function compareString(key, keys) {
     var count = 0,
         bool = false
+    const charA = key.split(",")
+    const charB = keys.split(",")
 
-    for (let index = 0; index < key.length; index++) {
-        if (key.charAt(index) == keys.charAt(index)) {
-            //console.log(key.charAt(index),'=',keys.charAt(index));
+    for (var i = 0; i < key.length; i++) {
+        for (var j = 0; j < keys.length; j++) {
+          if (charA[i] == charB[j]){
             count++
+          }
         }
+        // for (let index = 0; index < key.length; index++) {
+        //     if (key.charAt(index) == keys.charAt(index)) {
+        //         //console.log(key.charAt(index),'=',keys.charAt(index));
+        //         count++
+        //     }
     }
     //console.log('count',count);
 
-    if (count >= 3)
+    if (count ==  key.length)
         bool = true
     return bool
 }
