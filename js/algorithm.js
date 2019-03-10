@@ -61,21 +61,8 @@ function getValue() {
 
     console.log('Container', Container);
 
-    Object
-        .keys(Container[2])
-        .forEach(function (keys) {
-            console.log('Contanier.key', keys.replace(/,/g, ''));
-            const role = combinationsRole(keys.replace(/,/g, ''))
-            console.log('role', role);
+    getStrongRole(Container)
 
-            const RoleItemSet = FindRolesItemSet(role)
-            console.log(RoleItemSet);
-            FinsStrongRoles(RoleItemSet,Container);
-            var RoleItemSet2 = [...RoleItemSet]
-
-            FinsStrongRoles(RoleItemSet2.reverse(), Container);
-
-        })
 
     //.replace(/,/g, '');
     //  ทำยังไงให้เก็ท key มาทีละ array 
@@ -86,6 +73,23 @@ function getValue() {
     // คำนวนค่า Confident ...
 
 };
+
+function getStrongRole(Container) {
+    for (let index = 1; index < Container.length; index++) {
+        Object
+            .keys(Container[index])
+            .forEach(function (keys) {
+                console.log('Contanier.key', keys.replace(/,/g, ''));
+                const role = combinationsRole(keys.replace(/,/g, ''))
+                //console.log('role', role);
+                const RoleItemSet = FindRolesItemSet(role)
+                console.log(RoleItemSet);
+                FinsStrongRoles(RoleItemSet, Container);
+                var RoleItemSet2 = [...RoleItemSet]
+                FinsStrongRoles(RoleItemSet2.reverse(), Container);
+            })
+    }
+}
 
 function FinsStrongRoles(Roles, MapOfFrequent) {
     //input    [ ["23", "24", "2"] , ["4", "3", "34"] ]
@@ -101,14 +105,14 @@ function FinsStrongRoles(Roles, MapOfFrequent) {
         keyRight = Roles[0][index]
             .split("")
             .join() // [2,3]  replace to   [4]
-        console.log('keyLeft', keyLeft);
-        console.log('keyRight', keyRight);
+        // console.log('keyLeft', keyLeft);
+        // console.log('keyRight', keyRight);
 
         const supA = FindKeyInArrayOnObject(MapOfFrequent, keyLeft)
         const supB = FindKeyInArrayOnObject(MapOfFrequent, keyRight)
 
-        console.log('MapOfFrequentkeyLeft', supA);
-        console.log('MapOfFrequentkeyRight', supB);
+        // console.log('MapOfFrequentkeyLeft', supA);
+        // console.log('MapOfFrequentkeyRight', supB);
 
         const confident = (supA / supB).toFixed(2) * 100;
         console.log('confident', confident);
@@ -120,18 +124,18 @@ function FinsStrongRoles(Roles, MapOfFrequent) {
 
 function FindKeyInArrayOnObject(MapOfFrequent, key) {
     var result = null
-    console.log('key ',key);
-    
+    //console.log('key ', key);
+
     for (let index = 0; index < MapOfFrequent.length; index++) {
         Object
             .keys(MapOfFrequent[index])
             .forEach(function (keys) {
                 if (key == keys) {
-                    console.log(key,'=',keys);
-                    
+                    //console.log(key, '=', keys);
+
                     result = MapOfFrequent[index][key]
                 } else if (compareString(key, keys) && key.length > 2) {
-                    console.log('condition 2');
+                    //console.log('condition 2');
                     result = MapOfFrequent[index][keys]
                 }
             })
@@ -147,14 +151,14 @@ function compareString(key, keys) {
 
     for (var i = 0; i < key.length; i++) {
         for (var j = 0; j < keys.length; j++) {
-          if (charA[i] == charB[j]){
-            count++
-          }
+            if (charA[i] == charB[j]) {
+                count++
+            }
         }
     }
     //console.log('count',count,"==",charA.length);
 
-    if (count ==  charA.length)
+    if (count == charA.length)
         bool = true
     return bool
 }
