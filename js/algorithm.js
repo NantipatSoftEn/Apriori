@@ -60,26 +60,81 @@ function getValue() {
     Tohtml(FrequentItemSetFilter)
 
     console.log('Container', Container);
-    const keyContainer = Object
-        .keys(Container[2])
-        .join()
-        .replace(/,/g, '');
-    console.log('Contanier.key', keyContainer);
 
-    const role = combinationsRole(keyContainer)
+    //console.log('ww', getStrongRoles(Container));
 
-    var RoleItemSet = FindRolesItemSet(role)
-    console.log(RoleItemSet);
-
-    FinsStrongRoles(RoleItemSet, Container)
-    // คำนวนค่า Confident ...
+    const StrongRoles = chageObjKeyToNameRole(getStrongRoles(Container), ArrayOfMapping)
+    console.log('StrongRoles', StrongRoles);
+    Tohtml(StrongRoles)
 
 };
 
+function chageObjKeyToNameRole(ObjRole, MappingValue) {
+    // console.log('MappingValue', MappingValue);
+    console.log('ObjRole', ObjRole);
+
+    var result = []
+    for (let n = 0; n < ObjRole.length; n++) {
+        var newObj = {}
+        Object
+            .keys(ObjRole[n])
+            .forEach(function (keys) {
+                //console.log('keys', keys);
+                var key = keys.split("=>");
+                //console.log('keySplit', key);
+                var strKey = ""
+                for (let i = 0; i < key.length; i++) {
+                    var keyName = key[i].split(",");
+                    for (let j = 0; j < keyName.length; j++) {
+                        //console.log('keyName', j, keyName);
+                        //console.log('MappingValue', MappingValue[keyName[j]]);
+                        strKey += MappingValue[keyName[j]] + ","
+                    }
+                    strKey = strKey.slice(0, -1);
+                    strKey += "=>"
+                }
+                strKey = strKey.slice(0, -2);
+                //console.log('strKey', strKey);
+                //console.log('ObjRole[8][keys]',ObjRole[8][keys]);
+                newObj[strKey] = ObjRole[n][keys]
+                //console.log('newObj', n, newObj);
+                result.push(newObj)
+            })
+
+    }
+
+    //result = getUnique(result, keys)
+    result = Array.from(new Set(result));
+
+    return result
+}
+
+function getStrongRoles(Container) {
+    var result = []
+    for (let index = 1; index < Container.length; index++) {
+        Object
+            .keys(Container[index])
+            .forEach(function (keys) {
+                //console.log('Contanier.key', keys.replace(/,/g, ''));
+                const role = combinationsRole(keys.replace(/,/g, ''))
+                //console.log('role', role);
+                const RoleItemSet = FindRolesItemSet(role)
+                //console.log(RoleItemSet);
+                var A = FinsStrongRoles(RoleItemSet, Container);
+                var RoleItemSet2 = [...RoleItemSet]
+                var B = FinsStrongRoles(RoleItemSet2.reverse(), Container);
+                result.push(A)
+                result.push(B)
+            })
+    }
+    return result
+}
+
 function FinsStrongRoles(Roles, MapOfFrequent) {
     //input    [ ["23", "24", "2"] , ["4", "3", "34"] ]
+    var newObj = {}
+    for (var index = 0; index < Roles[0].length; index++) {
 
-    for (var index = 0; index < Roles.length; index++) {
         var keyLeft = Roles[0][index]
             .split("")
             .join() // [2,3]
@@ -90,38 +145,37 @@ function FinsStrongRoles(Roles, MapOfFrequent) {
         keyRight = Roles[0][index]
             .split("")
             .join() // [2,3]  replace to   [4]
-        console.log('keyLeft', keyLeft);
-        console.log('keyRight', keyRight);
-
+        // console.log('keyLeft', keyLeft);
+        // console.log('keyRight', keyRight);
         const supA = FindKeyInArrayOnObject(MapOfFrequent, keyLeft)
         const supB = FindKeyInArrayOnObject(MapOfFrequent, keyRight)
-      
-        console.log('MapOfFrequentkeyLeft', supA);
-        console.log('MapOfFrequentkeyRight', supB);
-
+        // console.log('MapOfFrequentkeyLeft', supA);
+        // console.log('MapOfFrequentkeyRight', supB);
+        const arrow = Roles[0][index].split("").join() + "=>" + Roles[1][index].split("").join()
+        //console.log('arrow', arrow);
         const confident = (supA / supB).toFixed(2) * 100;
-        console.log('confident', confident);
-        console.log('=====================================');
-
+        //console.log('confident', confident);
+        newObj[arrow] = confident
+        //console.log('=====================================');
     }
+    return newObj
 
 }
 
 function FindKeyInArrayOnObject(MapOfFrequent, key) {
-    console.log('key', typeof key);
-
     var result = null
+    //console.log('key ', key);
+
     for (let index = 0; index < MapOfFrequent.length; index++) {
         Object
             .keys(MapOfFrequent[index])
             .forEach(function (keys) {
-                
-                if (key == keys ){
-                    console.log('condition 1');
+                if (key == keys) {
+                    //console.log(key, '=', keys);
+
                     result = MapOfFrequent[index][key]
-                }
-                else if (compareString(key, keys) && key.length > 2) {
-                    console.log('condition 2');
+                } else if (compareString(key, keys) && key.length > 2) {
+                    //console.log('condition 2');
                     result = MapOfFrequent[index][keys]
                 }
             })
@@ -132,16 +186,19 @@ function FindKeyInArrayOnObject(MapOfFrequent, key) {
 function compareString(key, keys) {
     var count = 0,
         bool = false
+    const charA = key.split(",")
+    const charB = keys.split(",")
 
-    for (let index = 0; index < key.length; index++) {
-        if (key.charAt(index) == keys.charAt(index)){
-            //console.log(key.charAt(index),'=',keys.charAt(index));
-            count++
+    for (var i = 0; i < key.length; i++) {
+        for (var j = 0; j < keys.length; j++) {
+            if (charA[i] == charB[j]) {
+                count++
+            }
         }
     }
-    console.log('count',count);
-    
-    if (count >= 3)
+    //console.log('count',count,"==",charA.length);
+
+    if (count == charA.length)
         bool = true
     return bool
 }
@@ -161,18 +218,21 @@ function Tohtml(ArrOfObj) {
 
     var tableMock = "<table class='nes-table is-bordered is-dark'>";
     tableMock += "<tr>";
+    tableMock += "<th>No.</th>";
     tableMock += "<th>Frequent itemSet</th>";
     tableMock += "<th>Support (%)</th>";
     tableMock += "</tr>";
-    for (var i = 0; i < ArrOfObj.length; i++) {
+    for (var i = 0,j = 1; i < ArrOfObj.length; i++) {
         Object
             .keys(ArrOfObj[i])
             .forEach(function (key) {
                 tableMock += "<tr>";
                 //console.log('i=', i, " ", ArrOfObj[i][key], " ", key);
+                tableMock += "<td>" + j + "</td>";
                 tableMock += "<td>" + key + "</td>";
                 tableMock += "<td>" + ArrOfObj[i][key] + "</td>";
                 tableMock += "</tr>";
+                j++
             })
 
     }
@@ -308,7 +368,7 @@ function merg(filter2D, InsentValue) {
     return objMerg
 }
 
-function chageObjKeyWhichNumberToName(fArr, MappingValue, ) {
+function chageObjKeyWhichNumberToName(fArr, MappingValue) {
     var result = []
     for (let index = 0; index < fArr.length; index++) {
         var newObj = {}
