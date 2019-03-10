@@ -73,7 +73,7 @@ function getValue() {
             FinsStrongRoles(RoleItemSet,Container);
             var RoleItemSet2 = [...RoleItemSet]
 
-            //FinsStrongRoles(RoleItemSet2.reverse(), Container);
+            FinsStrongRoles(RoleItemSet2.reverse(), Container);
 
         })
 
@@ -151,15 +151,10 @@ function compareString(key, keys) {
             count++
           }
         }
-        // for (let index = 0; index < key.length; index++) {
-        //     if (key.charAt(index) == keys.charAt(index)) {
-        //         //console.log(key.charAt(index),'=',keys.charAt(index));
-        //         count++
-        //     }
     }
-    //console.log('count',count);
+    //console.log('count',count,"==",charA.length);
 
-    if (count ==  key.length)
+    if (count ==  charA.length)
         bool = true
     return bool
 }
