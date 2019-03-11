@@ -196,12 +196,12 @@ function compareString(key, keys) {
     const charB = keys.split(",")
 
     console.log(charA, "=====", charB);
-    console.log('key.length',key.length);
-    
+    console.log('charA.length', charA.length);
+
     for (var i = 0; i < charA.length; i++) {
         for (var j = 0; j < charB.length; j++) {
-            if (charA[i] == charB[j]) {
-                console.log('charA ', charA[i], "==", "charB ", charB[j], "i,j=",i , " ",j);
+            if (charA[i] == charB[j]  && charA.length ==  charB.length) {
+                console.log('charA ', charA[i], "==", "charB ", charB[j], "i,j=", i, " ", j);
                 count++
             }
         }
