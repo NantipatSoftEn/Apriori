@@ -67,7 +67,7 @@ function getValue() {
 
     //console.log('ww', getStrongRoles(Container));
 
-    const StrongRoles = chageObjKeyToNameRole(getStrongRoles(Container,minCon), ArrayOfMapping)
+    const StrongRoles = chageObjKeyToNameRole(getStrongRoles(Container, minCon), ArrayOfMapping)
     console.log('StrongRoles', StrongRoles);
     TohtmlStrogRule(StrongRoles)
 
@@ -113,7 +113,7 @@ function chageObjKeyToNameRole(ObjRole, MappingValue) {
     return result
 }
 
-function getStrongRoles(Container,minCon) {
+function getStrongRoles(Container, minCon) {
     var result = []
     for (let index = 1; index < Container.length; index++) {
         Object
@@ -124,9 +124,9 @@ function getStrongRoles(Container,minCon) {
                 //console.log('role', role);
                 const RoleItemSet = FindRolesItemSet(role)
                 //console.log(RoleItemSet);
-                var A = FinsStrongRoles(RoleItemSet, Container,minCon);
+                var A = FinsStrongRoles(RoleItemSet, Container, minCon);
                 var RoleItemSet2 = [...RoleItemSet]
-                var B = FinsStrongRoles(RoleItemSet2.reverse(), Container,minCon);
+                var B = FinsStrongRoles(RoleItemSet2.reverse(), Container, minCon);
                 result.push(A)
                 result.push(B)
             })
@@ -176,15 +176,16 @@ function FindKeyInArrayOnObject(MapOfFrequent, key) {
             .keys(MapOfFrequent[index])
             .forEach(function (keys) {
                 if (key == keys) {
-                    console.log(key, '=', keys);
+                    console.log("TEst", key, '=', keys);
 
                     result = MapOfFrequent[index][key]
-                } else if (compareString(key, keys) && key.length > 3) {
-                    console.log('condition 2 ', keys, "lenvfgtr", keys.length  );
+                } else if (compareString(key, keys) && key.length > 2) {
+                    console.log('condition 2 ', keys, );
                     result = MapOfFrequent[index][keys]
                 }
             })
     }
+    console.log('================================');
     return result
 }
 
@@ -194,18 +195,24 @@ function compareString(key, keys) {
     const charA = key.split(",")
     const charB = keys.split(",")
 
-    for (var i = 0; i < key.length; i++) {
-        for (var j = 0; j < keys.length; j++) {
+    console.log(charA, "=====", charB);
+    console.log('key.length',key.length);
+    
+    for (var i = 0; i < charA.length; i++) {
+        for (var j = 0; j < charB.length; j++) {
             if (charA[i] == charB[j]) {
+                console.log('charA ', charA[i], "==", "charB ", charB[j], "i,j=",i , " ",j);
                 count++
             }
         }
     }
-    //console.log('count',count,"==",charA.length);
 
+    console.log('count', count, "==", charA.length);
     if (count == charA.length)
         bool = true
     return bool
+
+
 }
 
 function FindRolesItemSet(strArr) {
