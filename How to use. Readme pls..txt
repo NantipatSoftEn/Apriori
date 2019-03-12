@@ -1,0 +1,28 @@
+You can see version deploy at this link 
+
+https://nantipatsoften.github.io/Apriori/ 
+
+or on repo github.
+
+https://github.com/NantipatSoftEn/Apriori
+
+
+If you want to  open in local  open file  index.html
+
+
+all algorithm at  path  js/algorithm.js  you can see this.
+
+
+'-' = itemSet in one new transaction.
+',' = that mean new transaction.
+
+it same array 2 dimansion
+
+example
+ 
+T1	Apple-Cereal-Diapers,
+T2	Beer-Cereal-Eggs,
+T3	Apple-Beer-Cereal-Eggs,
+T4	Beer-Eggs
+
+**please remember don't input white space or blank line in form
